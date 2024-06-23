@@ -1,0 +1,13 @@
+{
+  "posts": [
+    {
+      "title": "Compose Multiplatform Wasm을 활용해서 Github Pages 만들기",
+      "description": "Compose Multiplatform Wasm을 활용해서 Github Pages 만들기",
+      "path": "compose_multiplatform",
+      "thumbnail": "compose_multiplatform/thumbnail.webp",
+      "createAt": "2024년 6월 23일",
+      "category": "DEV",
+      "tags": ["Kotlin", "Compose", "Multiplatform"]
+    }
+  ]
+}

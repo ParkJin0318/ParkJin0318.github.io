@@ -1,0 +1,13 @@
+{
+    "spec": {
+        "template_id": "kmt",
+        "targets": {
+            "web": {
+                "ui": [
+                    "compose"
+                ]
+            }
+        }
+    },
+    "timestamp": "2024-06-17T13:44:19.659900182Z"
+}

@@ -1,0 +1,31 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 12.x
+
+      - name: npm install
+        run: npm install
+
+      - name: wasmJsBrowserDistribution
+        run: ./gradlew wasmJsBrowserDistribution
+
+      - name: deploy page
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GH_ACTIONS_TOKEN }}
+          publish_dir: ./composeApp/build/dist/wasmJs/productionExecutable
