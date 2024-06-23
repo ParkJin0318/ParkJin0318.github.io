@@ -1,10 +1,16 @@
 # PostPage
+<br/>
+
+# PostPage
+# PostPage
+
+## PostPage
 ### PostPage
 #### PostPage
 ##### PostPage
 ###### PostPage
 ###### PostPage
-![Image](../images/banner.jpg)
+![Image](../compose_multiplatform/banner.jpg)
 # PostPage
 # PostPage
 # PostPage
