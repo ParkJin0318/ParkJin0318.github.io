@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <style>
+    .utterances {
+      position: relative;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .utterances-frame {
+      color-scheme: light;
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 1px;
+      min-width: 100%;
+      max-width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Jin Blog - Kotlin Coroutine을 도입하면 좋은 이유</title>
+  <meta content="Powered by Kobweb" name="description">
+  <link href="/favicon.ico" rel="icon">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="/fonts/pretendard.css" rel="stylesheet">
+  <script src="/highlight.js/highlight.min.js"></script>
+  <link type="text/css" rel="stylesheet" title="hljs-style" href="/highlight.js/styles/a11y-light.min.css">
+ </head>
+ <body style="background-color: rgb(255, 255, 255);">
+  <div id="root" style="width: 100%; height: 100%;" class="silk-colors_light">
+   <style>@layer reset, base, component-styles, component-variants, restricted-styles, general-styles;@layer reset {  html, body { padding: 0px; margin: 0px; }  * { box-sizing: border-box; }}</style>
+   <style>@layer reset, base, component-styles, component-variants, restricted-styles, general-styles;.kobweb-box { display: grid; grid-template-columns: minmax(0px, 1fr); grid-template-rows: minmax(0px, 1fr); }.kobweb-box > * { grid-area: 1 / 1; }.kobweb-box.kobweb-align-top-start { place-items: start; }.kobweb-box.kobweb-align-top-center { place-items: start center; }.kobweb-box.kobweb-align-top-end { place-items: start end; }.kobweb-box.kobweb-align-center-start { place-items: center start; }.kobweb-box.kobweb-align-center { place-items: center; }.kobweb-box.kobweb-align-center-end { place-items: center end; }.kobweb-box.kobweb-align-bottom-start { place-items: end start; }.kobweb-box.kobweb-align-bottom-center { place-items: end center; }.kobweb-box.kobweb-align-bottom-end { place-items: end; }.kobweb-box > .kobweb-align-top-start-self { place-self: start; }.kobweb-box > .kobweb-align-top-center-self { place-self: start center; }.kobweb-box > .kobweb-align-top-end-self { place-self: start end; }.kobweb-box > .kobweb-align-center-start-self { place-self: center start; }.kobweb-box > .kobweb-align-center-self { place-self: center; }.kobweb-box > .kobweb-align-center-end-self { place-self: center end; }.kobweb-box > .kobweb-align-bottom-start-self { place-self: end start; }.kobweb-box > .kobweb-align-bottom-center-self { place-self: end center; }.kobweb-box > .kobweb-align-bottom-end-self { place-self: end; }.kobweb-col { display: flex; flex-direction: column; }.kobweb-col.kobweb-arrange-top { justify-content: flex-start; }.kobweb-col.kobweb-arrange-center { justify-content: center; }.kobweb-col.kobweb-arrange-bottom { justify-content: flex-end; }.kobweb-col.kobweb-arrange-space-evenly { justify-content: space-evenly; }.kobweb-col.kobweb-arrange-space-between { justify-content: space-between; }.kobweb-col.kobweb-arrange-space-around { justify-content: space-around; }.kobweb-col.kobweb-align-start { align-items: flex-start; }.kobweb-col.kobweb-align-center-horiz { align-items: center; }.kobweb-col.kobweb-align-end { align-items: flex-end; }.kobweb-col > .kobweb-align-start-self { align-self: flex-start; }.kobweb-col > .kobweb-align-center-horiz-self { align-self: center; }.kobweb-col > .kobweb-align-end-self { align-self: flex-end; }.kobweb-row { display: flex; flex-direction: row; }.kobweb-row.kobweb-arrange-start { justify-content: flex-start; }.kobweb-row.kobweb-arrange-center { justify-content: center; }.kobweb-row.kobweb-arrange-end { justify-content: flex-end; }.kobweb-row.kobweb-arrange-space-evenly { justify-content: space-evenly; }.kobweb-row.kobweb-arrange-space-between { justify-content: space-between; }.kobweb-row.kobweb-arrange-space-around { justify-content: space-around; }.kobweb-row.kobweb-align-top { align-items: flex-start; }.kobweb-row.kobweb-align-center-vert { align-items: center; }.kobweb-row.kobweb-align-bottom { align-items: flex-end; }.kobweb-row > .kobweb-align-top-self { align-self: flex-start; }.kobweb-row > .kobweb-align-center-vert-self { align-self: center; }.kobweb-row > .kobweb-align-bottom-self { align-self: flex-end; }.kobweb-spacer { flex-grow: 1; }.kobweb-row.kobweb-arrange-spaced-by { column-gap: var(--kobweb-arrange-spaced-by); }.kobweb-col.kobweb-arrange-spaced-by { row-gap: var(--kobweb-arrange-spaced-by); }</style>
+   <style>@layer reset, base, component-styles, component-variants, restricted-styles, general-styles;body { font-family: Pretendard; font-size: 1.125rem; line-height: 1.5; }@keyframes silk-checkbox-enabled {   0% { opacity: 0; }  100% { opacity: 1; }}@layer general-styles {  .silk-colors_light { --silk-background-color: rgb(255, 255, 255); --silk-color: rgb(25, 31, 40); --silk-border-color: rgba(0, 0, 0, 0.2); --silk-focus-outline-color: rgba(33, 150, 243, 0.4980392156862745); --silk-placeholder-color: rgb(158, 158, 158); --silk-button-background-default-color: rgb(204, 204, 204); --silk-button-background-hover-color: rgb(163, 163, 163); --silk-button-background-pressed-color: rgb(122, 122, 122); --silk-checkbox-icon-background-color: rgb(33, 150, 243); --silk-checkbox-icon-background-hover-color: rgb(30, 136, 229); --silk-checkbox-icon-color: rgb(255, 255, 255); --silk-input-border-hover-color: rgb(158, 158, 158); --silk-input-border-invalid-color: rgb(183, 28, 28); --silk-input-filled-color: rgb(238, 238, 238); --silk-input-filled-hover-color: rgb(214, 214, 214); --silk-input-filled-focus-color: rgba(0, 0, 0, 0); --silk-overlay-background-color: rgba(0, 0, 0, 0.4980392156862745); --silk-switch-thumb-color: rgb(255, 255, 255); --silk-tab-color: rgb(0, 0, 0); --silk-tab-background-color: rgb(255, 255, 255); --silk-tab-disabled-background-color: rgb(255, 255, 255); --silk-tab-hover-background-color: rgb(211, 211, 211); --silk-tab-pressed-background-color: rgb(245, 245, 245); --silk-tooltip-background-color: rgb(0, 0, 0); --silk-tooltip-color: rgb(255, 255, 255); --silk-link-default-color: rgb(0, 0, 255); --silk-link-visited-color: rgb(128, 0, 128); }}@layer general-styles {  .silk-colors_dark { --silk-background-color: rgb(43, 43, 43); --silk-color: rgb(255, 255, 255); --silk-border-color: rgba(255, 255, 255, 0.2); --silk-focus-outline-color: rgba(33, 150, 243, 0.4980392156862745); --silk-placeholder-color: rgb(158, 158, 158); --silk-button-background-default-color: rgb(51, 51, 51); --silk-button-background-hover-color: rgb(92, 92, 92); --silk-button-background-pressed-color: rgb(133, 133, 133); --silk-checkbox-icon-background-color: rgb(144, 202, 249); --silk-checkbox-icon-background-hover-color: rgb(100, 181, 246); --silk-checkbox-icon-color: rgb(0, 0, 0); --silk-input-border-hover-color: rgb(117, 117, 117); --silk-input-border-invalid-color: rgb(229, 115, 115); --silk-input-filled-color: rgb(33, 33, 33); --silk-input-filled-hover-color: rgb(56, 56, 56); --silk-input-filled-focus-color: rgba(0, 0, 0, 0); --silk-overlay-background-color: rgba(255, 255, 255, 0.4980392156862745); --silk-switch-thumb-color: rgb(255, 255, 255); --silk-tab-color: rgb(255, 255, 255); --silk-tab-background-color: rgb(0, 0, 0); --silk-tab-disabled-background-color: rgb(0, 0, 0); --silk-tab-hover-background-color: rgb(47, 79, 79); --silk-tab-pressed-background-color: rgb(169, 169, 169); --silk-tooltip-background-color: rgb(255, 255, 255); --silk-tooltip-color: rgb(0, 0, 0); --silk-link-default-color: rgb(0, 255, 255); --silk-link-visited-color: rgb(238, 130, 238); }}@layer component-styles {  .silk-input { appearance: none; color: var(--silk-color); height: var(--silk-input-height); font-size: var(--silk-input-font-size); background-color: rgba(0, 0, 0, 0); outline: rgba(0, 0, 0, 0) solid 0px; border: 0px solid rgba(0, 0, 0, 0); transition: border-color var(--silk-input-color-transition-duration, var(--silk-transition-duration-normal, 200ms)), box-shadow var(--silk-input-color-transition-duration, var(--silk-transition-duration-normal, 200ms)), background-color var(--silk-input-color-transition-duration, var(--silk-transition-duration-normal, 200ms)); }}@layer component-styles {  .silk-input::placeholder { opacity: var(--silk-input-placeholder-opacity, var(--silk-placeholder-opacity, 1)); color: var(--silk-input-placeholder-color, var(--silk-placeholder-color)); }}@layer component-styles {  .silk-input-group { outline: rgba(0, 0, 0, 0) solid 0px; border: 0px solid rgba(0, 0, 0, 0); border-radius: var(--silk-input-border-radius); font-size: var(--silk-input-font-size); }}@layer general-styles {  .silk-disabled { opacity: 0.5; cursor: not-allowed; }}@layer general-styles {  .silk-smooth-color { transition: background-color var(--silk-smooth-color-transition-duration, var(--silk-transition-duration-normal, 200ms)); }}@layer component-styles {  .silk-button { color: var(--silk-button-color, var(--silk-color)); background-color: var(--silk-button-background-default-color); line-height: 1.2; height: var(--silk-button-height); min-width: var(--silk-button-height); font-size: var(--silk-button-font-size); font-weight: 600; white-space: nowrap; padding: 0px var(--silk-button-padding-horizontal); vertical-align: middle; border-radius: 0.375rem; border-width: 0px; user-select: none; transition: background-color var(--silk-button-color-transition-duration, var(--silk-transition-duration-normal, 200ms)); }}@layer component-styles {  .silk-button:hover:not([aria-disabled="true"]) { background-color: var(--silk-button-background-hover-color); cursor: pointer; }}@layer component-styles {  .silk-button:focus-visible:not([aria-disabled="true"]) { outline: rgba(0, 0, 0, 0) solid 2px; box-shadow: 0px 0px 0 0.1875rem var(--silk-button-background-focus-color, var(--silk-focus-outline-color)); }}@layer component-styles {  .silk-button:active:not([aria-disabled="true"]) { background-color: var(--silk-button-background-pressed-color); }}@layer component-styles {  .silk-checkbox { gap: var(--silk-checkbox-spacing, 0.5rem); user-select: none; font-size: var(--silk-checkbox-font-size); cursor: pointer; position: relative; }}@layer component-styles {  .silk-checkbox-icon-container { font-size: var(--silk-checkbox-icon-size); width: var(--silk-checkbox-size); height: var(--silk-checkbox-size); border: var(--silk-checkbox-border-width, 0.125rem) solid var(--silk-checkbox-border-color, var(--silk-border-color)); border-radius: var(--silk-checkbox-border-radius, 0.125rem); transition: background-color var(--silk-checkbox-transition-duration, var(--silk-transition-duration-very-fast, 100ms)), border-color var(--silk-checkbox-transition-duration, var(--silk-transition-duration-very-fast, 100ms)); }}@layer component-styles {  .silk-checkbox-icon { width: var(--silk-checkbox-size); height: var(--silk-checkbox-size); color: var(--silk-checkbox-icon-color); }}@layer component-styles {  .silk-overlay { background-color: var(--silk-overlay-background-color); }}@layer component-styles {  .silk-popup { transition: opacity var(--silk-popup-transition-duration, var(--silk-transition-duration-fast, 150ms)); }}@layer component-styles {  .silk-simple-grid { display: grid; }}@media (min-width: 0px) {  @layer component-styles {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-zero), 1fr); }}}@media (min-width: 30rem) {  @layer component-styles {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-sm), 1fr); }}}@media (min-width: 48rem) {  @layer component-styles {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-md), 1fr); }}}@media (min-width: 62rem) {  @layer component-styles {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-lg), 1fr); }}}@media (min-width: 80rem) {  @layer component-styles {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-xl), 1fr); }}}@layer component-styles {  .silk-surface { background-color: var(--silk-surface-background-color, var(--silk-background-color)); color: var(--silk-surface-color, var(--silk-color)); }}@layer component-styles {  .silk-horizontal-divider { border-top: 1px solid var(--silk-divider-color, var(--silk-border-color)); width: 100%; }}@layer component-styles {  .silk-vertical-divider { border-left: 1px solid var(--silk-divider-color, var(--silk-border-color)); height: var(--silk-divider-length, 90%); }}@layer component-styles {  .silk-switch { position: relative; }}@layer component-styles {  .silk-switch-track { width: var(--silk-switch-track-width); min-width: var(--silk-switch-track-width); height: var(--silk-switch-track-height); min-height: var(--silk-switch-track-height); padding: var(--silk-switch-track-padding); border-radius: var(--silk-switch-border-radius, 9999px); background-color: var(--silk-switch-track-background-color); transition: background-color var(--silk-switch-transition-duration, var(--silk-transition-duration-fast, 150ms)); box-sizing: content-box; }}@layer component-styles {  .silk-switch-track:hover:not([aria-disabled="true"]) { cursor: pointer; }}@layer component-styles {  .silk-switch-thumb { width: var(--silk-switch-track-height); height: var(--silk-switch-track-height); border-radius: var(--silk-switch-border-radius, 9999px); background-color: var(--silk-switch-thumb-color); translate: var(--silk-switch-thumb-offset); transition: translate var(--silk-switch-transition-duration, var(--silk-transition-duration-fast, 150ms)); }}@layer component-styles {  .silk-tabs-tab-row { width: 100%; border-bottom: var(--silk-tab-border-thickness, 2px) solid var(--silk-tab-border-color, var(--silk-border-color)); }}@layer component-styles {  .silk-tabs-tab { cursor: pointer; transition: background-color var(--silk-tab-color-transition-duration, var(--silk-transition-duration-normal, 200ms)), color var(--silk-tab-color-transition-duration, var(--silk-transition-duration-normal, 200ms)), border-color var(--silk-tab-color-transition-duration, var(--silk-transition-duration-normal, 200ms)); background-color: var(--silk-tab-background-color); color: var(--silk-tab-color); user-select: none; padding: 0.5rem; margin: 0px 0px calc(-1 * var(--silk-tab-border-thickness, 2px)); border-bottom: var(--silk-tab-border-thickness, 2px) solid var(--silk-tab-border-color, var(--silk-border-color)); }}@layer component-styles {  .silk-tabs-tab[aria-disabled="true"] { background-color: var(--silk-tab-disabled-background-color); cursor: not-allowed; }}@layer component-styles {  .silk-tabs-tab:hover:not([aria-disabled="true"]) { background-color: var(--silk-tab-hover-background-color); }}@layer component-styles {  .silk-tabs-tab:active:not([aria-disabled="true"]) { background-color: var(--silk-tab-pressed-background-color); }}@layer component-styles {  .silk-tabs-panel { padding: 1rem; width: 100%; flex-grow: 1; overflow-y: auto; }}@layer component-styles {  .silk-tooltip-arrow { position: absolute; border-width: 5px; border-style: solid; }}@layer component-styles {  .silk-tooltip { position: relative; background-color: var(--silk-tooltip-background-color); color: var(--silk-tooltip-color); border-radius: 6px; }}@layer component-styles {  .silk-tooltip-text { padding: 5px; }}@layer restricted-styles {  .silk-button-size_xs { --silk-button-font-size: var(--silk-font-size-xs, 0.75rem); --silk-button-height: 1.5rem; --silk-button-padding-horizontal: 0.5rem; }}@layer restricted-styles {  .silk-button-size_sm { --silk-button-font-size: var(--silk-font-size-sm, 0.875rem); --silk-button-height: 2rem; --silk-button-padding-horizontal: 0.75rem; }}@layer restricted-styles {  .silk-button-size_md { --silk-button-font-size: var(--silk-font-size-md, 1rem); --silk-button-height: 2.5rem; --silk-button-padding-horizontal: 1rem; }}@layer restricted-styles {  .silk-button-size_lg { --silk-button-font-size: var(--silk-font-size-lg, 1.125rem); --silk-button-height: 3rem; --silk-button-padding-horizontal: 1.5rem; }}@layer restricted-styles {  .silk-checkbox-size_sm { --silk-checkbox-size: 0.875rem; --silk-checkbox-icon-size: 0.45rem; --silk-checkbox-font-size: var(--silk-font-size-sm, 0.875rem); }}@layer restricted-styles {  .silk-checkbox-size_md { --silk-checkbox-size: 1rem; --silk-checkbox-icon-size: 0.625rem; --silk-checkbox-font-size: var(--silk-font-size-md, 1rem); }}@layer restricted-styles {  .silk-checkbox-size_lg { --silk-checkbox-size: 1.25rem; --silk-checkbox-icon-size: 0.8rem; --silk-checkbox-font-size: var(--silk-font-size-lg, 1.125rem); }}@layer restricted-styles {  .silk-input-size_xs { --silk-input-font-size: var(--silk-font-size-xs, 0.75rem); --silk-input-height: 1.25rem; --silk-input-padding: 0.375rem; --silk-input-border-radius: var(--silk-border-radius-xs, 0.125rem); }}@layer restricted-styles {  .silk-input-size_sm { --silk-input-font-size: var(--silk-font-size-sm, 0.875rem); --silk-input-height: 1.75rem; --silk-input-padding: 0.5rem; --silk-input-border-radius: var(--silk-border-radius-sm, 0.25rem); }}@layer restricted-styles {  .silk-input-size_md { --silk-input-font-size: var(--silk-font-size-md, 1rem); --silk-input-height: 2.25rem; --silk-input-padding: 0.625rem; --silk-input-border-radius: var(--silk-border-radius-md, 0.375rem); }}@layer restricted-styles {  .silk-input-size_lg { --silk-input-font-size: var(--silk-font-size-lg, 1.125rem); --silk-input-height: 2.5rem; --silk-input-padding: 0.75rem; --silk-input-border-radius: var(--silk-border-radius-md, 0.375rem); }}@layer restricted-styles {  .silk-switch-size_sm { --silk-switch-track-width: 1.375rem; --silk-switch-track-height: 0.75rem; --silk-switch-track-padding: 0.188rem; }}@layer restricted-styles {  .silk-switch-size_md { --silk-switch-track-width: 1.875rem; --silk-switch-track-height: 1rem; --silk-switch-track-padding: 0.188rem; }}@layer restricted-styles {  .silk-switch-size_lg { --silk-switch-track-width: 2.875rem; --silk-switch-track-height: 1.5rem; --silk-switch-track-padding: 0.188rem; }}@layer component-styles {  .silk-link { text-decoration-line: none; }}@layer component-styles {  .silk-link:link { color: var(--silk-link-default-color); }}@layer component-styles {  .silk-link:visited { color: var(--silk-link-visited-color); }}@layer component-styles {  .silk-link:hover { text-decoration-line: underline; }}@layer component-styles {  .silk-toc { list-style-type: none; text-align: start; padding: 0rem; }}@layer general-styles {  .markdown h1 { font-size: 2.5rem; font-weight: bold; line-height: 1.5; margin: 1.625rem 0px 1rem; }}@layer general-styles {  .markdown h2 { font-size: 2rem; font-weight: bold; line-height: 1.5; margin: 1.625rem 0px 1rem; }}@layer general-styles {  .markdown h3 { font-size: 1.5rem; font-weight: bold; line-height: 1.5; margin: 1.625rem 0px 1rem; }}@layer general-styles {  .markdown h4 { font-size: 1.125rem; font-weight: bold; line-height: 1.5; margin: 1.625rem 0px 1rem; }}@layer general-styles {  .markdown h5 { font-size: 0.67rem; font-weight: bold; line-height: 1.7; margin: 1.625rem 0px 1rem; }}@layer general-styles {  .markdown p { margin: 0px 0px 0.8rem; }}@layer general-styles {  .markdown ul { width: 100%; overflow-wrap: break-word; }}@layer general-styles {  .markdown :is(li, ol, ul) { margin: 0px 0px 0.25rem; }}@layer general-styles {  .markdown code { font-weight: 500; }}@layer general-styles {  .markdown pre { width: 100%; margin: 0.5rem 0px 2rem; }}@layer general-styles {  .markdown pre > code { display: block; width: 100%; font-size: 0.9rem; overflow-x: auto; }}@layer general-styles {  .page-container-content { width: 100%; height: 100%; padding: 0px 2rem; }}@media (min-width: 48rem) {  @layer general-styles {  .page-container-content { max-width: 70rem; }}}@layer general-styles {  .post-card_light { color: rgb(25, 31, 40); transform: scale(1); transition: all 0.2s ease-in-out 0s; }}@layer general-styles {  .post-card_dark { color: rgb(255, 255, 255); transform: scale(1); transition: all 0.2s ease-in-out 0s; }}@layer general-styles {  .post-card:hover { cursor: pointer; color: rgb(41, 111, 207); transform: scale(1.03); }}@media not all and (min-width: 0px) {  @layer general-styles {  .silk-display-if-at-least-zero { display: none !important; }}}@media not all and (min-width: 30rem) {  @layer general-styles {  .silk-display-if-at-least-sm { display: none !important; }}}@media not all and (min-width: 48rem) {  @layer general-styles {  .silk-display-if-at-least-md { display: none !important; }}}@media not all and (min-width: 62rem) {  @layer general-styles {  .silk-display-if-at-least-lg { display: none !important; }}}@media not all and (min-width: 80rem) {  @layer general-styles {  .silk-display-if-at-least-xl { display: none !important; }}}@media (min-width: 0px) {  @layer general-styles {  .silk-display-until-zero { display: none !important; }}}@media (min-width: 30rem) {  @layer general-styles {  .silk-display-until-sm { display: none !important; }}}@media (min-width: 48rem) {  @layer general-styles {  .silk-display-until-md { display: none !important; }}}@media (min-width: 62rem) {  @layer general-styles {  .silk-display-until-lg { display: none !important; }}}@media (min-width: 80rem) {  @layer general-styles {  .silk-display-until-xl { display: none !important; }}}@layer component-variants {  .silk-input-outlined { padding-inline: var(--silk-input-padding) var(--silk-input-padding); border-radius: var(--silk-input-border-radius); border: 1px solid var(--silk-input-border-color, var(--silk-border-color)); }}@layer component-variants {  .silk-input-outlined[aria-invalid="true"] { border: 1px solid var(--silk-input-border-invalid-color); box-shadow: 0px 0px 0 1px var(--silk-input-border-invalid-color); }}@layer component-variants {  .silk-input-outlined:hover:not(:disabled) { border-color: var(--silk-input-border-hover-color); }}@layer component-variants {  .silk-input-outlined:focus-visible:not(:disabled) { border: 1px solid var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); box-shadow: 0px 0px 0 1px var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); }}@layer component-variants {  .silk-input-filled { padding-inline: var(--silk-input-padding) var(--silk-input-padding); background-color: var(--silk-input-filled-color); border-radius: var(--silk-input-border-radius); border: 1px solid rgba(0, 0, 0, 0); }}@layer component-variants {  .silk-input-filled:hover:not(:disabled) { background-color: var(--silk-input-filled-hover-color); }}@layer component-variants {  .silk-input-filled[aria-invalid="true"] { border-color: var(--silk-input-border-invalid-color); box-shadow: 0px 0px 0 1px var(--silk-input-border-invalid-color); }}@layer component-variants {  .silk-input-filled:focus-visible:not(:disabled) { background-color: var(--silk-input-filled-focus-color); border-color: var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); box-shadow: 0px 0px 0 1px var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); }}@layer component-variants {  .silk-input-flushed { border-bottom: 1px solid var(--silk-input-border-color, var(--silk-border-color)); }}@layer component-variants {  .silk-input-flushed[aria-invalid="true"] { border-color: var(--silk-input-border-invalid-color); box-shadow: 0px 1px var(--silk-input-border-invalid-color); }}@layer component-variants {  .silk-input-flushed:hover:not(:disabled) { border-color: var(--silk-input-border-hover-color); }}@layer component-variants {  .silk-input-flushed:focus-visible:not(:disabled) { border-color: var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); box-shadow: 0px 1px var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); }}@layer component-variants {  .silk-input-checkbox { border: 0px; width: 1px; height: 1px; margin: -1px; padding: 0px; clip-path: inset(50%); overflow: hidden; white-space: nowrap; position: absolute; }}@layer component-variants {  .silk-input-checkbox:focus-visible + * { box-shadow: 0px 0px 0 var(--silk-checkbox-focus-outline-spread, 0.1875rem) var(--silk-checkbox-focus-outline-color, var(--silk-focus-outline-color)); }}@layer component-variants {  .silk-input-checkbox:not([aria-disabled]):hover + * { --silk-checkbox-icon-background-color: var(--silk-checkbox-icon-background-hover-color); }}@layer component-variants {  .silk-checkbox-icon-container-checked { background-color: var(--silk-checkbox-icon-background-color); border-color: var(--silk-checkbox-icon-background-color); }}@layer component-variants {  .silk-checkbox-icon-container-unchecked { background-color: var(--silk-checkbox-unchecked-background-color); }}@layer component-variants {  .silk-input-switch { border: 0px; width: 1px; height: 1px; margin: -1px; padding: 0px; clip-path: inset(50%); overflow: hidden; white-space: nowrap; position: absolute; }}@layer component-variants {  .silk-input-switch:focus-visible + * { box-shadow: 0px 0px 0 0.1875rem var(--silk-switch-focus-color, var(--silk-focus-outline-color)); }}@layer component-variants {  .silk-tooltip-arrow-top-left { margin: -9px 0px 0px 9px; top: 0px; border-color: transparent transparent var(--silk-tooltip-background-color) transparent; }}@layer component-variants {  .silk-tooltip-arrow-top { margin: -9px 0px 0px -5px; left: 50%; top: 0px; border-color: transparent transparent var(--silk-tooltip-background-color) transparent; }}@layer component-variants {  .silk-tooltip-arrow-top-right { margin: -9px 9px 0px 0px; right: 0px; top: 0px; border-color: transparent transparent var(--silk-tooltip-background-color) transparent; }}@layer component-variants {  .silk-tooltip-arrow-left-top { margin: 9px 0px 0px -9px; left: 0px; top: 0px; border-color: transparent var(--silk-tooltip-background-color) transparent transparent; }}@layer component-variants {  .silk-tooltip-arrow-left { margin: -5px 0px 0px -9px; left: 0px; top: 50%; border-color: transparent var(--silk-tooltip-background-color) transparent transparent; }}@layer component-variants {  .silk-tooltip-arrow-left-bottom { margin: 0px 0px 9px -9px; left: 0px; bottom: 0px; border-color: transparent var(--silk-tooltip-background-color) transparent transparent; }}@layer component-variants {  .silk-tooltip-arrow-right-top { margin: 9px -9px 0px 0px; right: 0px; top: 0px; border-color: transparent transparent transparent var(--silk-tooltip-background-color); }}@layer component-variants {  .silk-tooltip-arrow-right { margin: -5px -9px 0px 0px; right: 0px; top: 50%; border-color: transparent transparent transparent var(--silk-tooltip-background-color); }}@layer component-variants {  .silk-tooltip-arrow-right-bottom { margin: 0px -9px 9px 0px; right: 0px; bottom: 0px; border-color: transparent transparent transparent var(--silk-tooltip-background-color); }}@layer component-variants {  .silk-tooltip-arrow-bottom-left { margin: 0px 0px -9px 9px; left: 0px; bottom: 0px; border-color: var(--silk-tooltip-background-color) transparent transparent transparent; }}@layer component-variants {  .silk-tooltip-arrow-bottom { margin: 0px 0px -9px -5px; left: 50%; bottom: 0px; border-color: var(--silk-tooltip-background-color) transparent transparent transparent; }}@layer component-variants {  .silk-tooltip-arrow-bottom-right { margin: 0px 9px -9px 0px; right: 0px; bottom: 0px; border-color: var(--silk-tooltip-background-color) transparent transparent transparent; }}@layer component-variants {  .silk-image-fit-width { width: 100%; object-fit: scale-down; }}@layer component-variants {  .silk-link-uncolored:link { color: var(--silk-color); }}@layer component-variants {  .silk-link-uncolored:visited { color: var(--silk-color); }}@layer component-variants {  .silk-link-undecorated:hover { text-decoration-line: none; }}@layer component-variants {  .silk-link-always-underlined { text-decoration-line: underline; }}@layer component-variants {  .silk-toc-bordered { border-radius: 5px; border: 1px solid var(--silk-toc-border-color, var(--silk-border-color)); padding: 1rem; }}</style>
+   <div class="silk-surface silk-smooth-color kobweb-box kobweb-align-top-start" style="min-height: 100vh; scroll-behavior: smooth;">
+    <div class="kobweb-box kobweb-align-center" style="width: 100%; min-height: 100%; background-color: rgb(255, 255, 255); grid-template-rows: 1fr min-content;">
+     <div class="kobweb-col kobweb-arrange-top kobweb-align-center-horiz" style="width: 100%; height: 100%; grid-row: 1 / 2;">
+      <div class="kobweb-col kobweb-arrange-top kobweb-align-start" style="width: 100%; min-height: 3.75rem; position: sticky; top: 0rem; z-index: 9998; background-color: rgb(255, 255, 255);">
+       <div class="kobweb-row kobweb-arrange-start kobweb-align-center-vert" style="width: 100%; height: 100%; padding: 0px 2rem;">
+        <div class="kobweb-row kobweb-arrange-start kobweb-align-center-vert" style="cursor: pointer;">
+         <span class="silk-span-text" style="font-size: 1.25rem; font-weight: bold; color: rgb(25, 31, 40); white-space: pre-wrap;">Jin </span><span class="silk-span-text" style="font-size: 1.25rem; font-weight: normal; color: rgb(78, 89, 104);">Blog</span>
+        </div>
+        <div class="kobweb-spacer"></div>
+        <div class="kobweb-row kobweb-arrange-start kobweb-align-center-vert" style="font-size: 1.5rem; gap: 1rem;">
+         <div class="kobweb-box kobweb-align-center" style="width: 1.5rem; height: 1.5rem; cursor: pointer;">
+          <img class="silk-image" style="width: 100%; height: 100%;" src="/github-mark.svg" alt="github-mark">
+         </div>
+         <div class="kobweb-box kobweb-align-center" style="width: 1.5rem; height: 1.5rem; cursor: pointer;">
+          <svg style="width: 100%; height: 100%;" width="1em" viewBox="0 0 200 200" stroke="currentColor" fill="none" stroke-width="20">
+           <path d="M 175 106.583 A 75 75 0 1 1 93.417 25 A 58.333 58.333 0 0 0 175 106.583 Z"></path>
+          </svg>
+         </div>
+        </div>
+       </div>
+       <div class="kobweb-box kobweb-align-top-start" style="width: 100%; border-top: 0.063rem solid rgb(224, 225, 227);"></div>
+      </div>
+      <div class="page-container-content kobweb-col kobweb-arrange-top kobweb-align-center-horiz">
+       <div class="kobweb-col kobweb-arrange-top kobweb-align-start" style="width: 100%; margin: 4rem 0px 0px;">
+        <img class="silk-image" style="width: 20rem; object-fit: contain;" src="/images/coroutine_introduction/thumbnail.jpg" alt="thumbnail"><span class="silk-span-text" style="font-size: 3rem; font-weight: bold; margin: 2rem 0px 0px; color: rgb(25, 31, 40);">Kotlin Coroutine을 도입하면 좋은 이유</span>
+        <div class="kobweb-row kobweb-arrange-start kobweb-align-top" style="display: flex; flex-wrap: wrap; justify-content: start; gap: 0.5rem; width: 100%; margin: 0.8rem 0px 0px;">
+         <span class="silk-span-text" style="font-size: 0.9rem; border-radius: 0.3rem; margin: 0px 0.3rem 0px 0px; padding: 0.25rem 0.5rem; color: rgb(25, 31, 40); background-color: rgb(242, 244, 246);">#Android</span><span class="silk-span-text" style="font-size: 0.9rem; border-radius: 0.3rem; margin: 0px 0.3rem 0px 0px; padding: 0.25rem 0.5rem; color: rgb(25, 31, 40); background-color: rgb(242, 244, 246);">#Coroutine</span>
+        </div><span class="silk-span-text" style="font-size: 0.9rem; font-weight: normal; color: rgb(78, 89, 104); margin: 1rem 0px 0px;">2023.08.25</span>
+       </div>
+       <div class="markdown kobweb-col kobweb-arrange-top kobweb-align-start" style="width: 100%; height: 100%; margin: 4rem 0px 0px;">
+        <p>단순한 이유로 코틀린 코루틴을 도입하고 싶을 수도 있고, 혹은 기존 프로젝트가 RxJava로 잘 구현되어 있고 문제 없이동작하는데,</p>
+        <p>과연 리소스를 들여서 코틀린 코루틴을 도입해야 할까 같은 의문점을 가질 수 있습니다.<br>
+         동일한 생각을 했던 사람으로서 코루틴 코틀린을 도입하면 좋은 명확한 이유에 대해 정리해봤습니다.</p>
+        <h2 id="비동기-연산을-처리하는-다양한-방법">비동기 연산을 처리하는 다양한 방법</h2>
+        <h3 id="이상적인-형태">이상적인 형태</h3>
+        <pre><code class="hljs language-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    view.showProgressBar()
+
+    <span class="hljs-keyword">val</span> user = getUserFromApi() <span class="hljs-comment">// API</span>
+    <span class="hljs-keyword">val</span> posting = getPostingFromApi() <span class="hljs-comment">// API</span>
+
+    view.hideProgressBar()
+    view.showUI(user, posting)
+}
+</code></pre>
+        <p>"API로부터 사용자 정보와 게시글 정보를 가져와서 UI에 노출하는 로직"을 구현할 경우, 위와 같이 구현하는 것이 가장 읽기 쉬운 이상적인 형태일 것 같습니다.</p>
+        <p>다만, Android 환경에서는 아래와 같은 문제점이 있습니다.</p>
+        <ul>
+         <li>UI 스레드가 장시간 블로킹 되어 ANR로크래시가 발생할 것입니다.</li>
+        </ul>
+        <p>다른 방법들을 살펴보면,</p>
+        <h3 id="thread-이용">Thread 이용</h3>
+        <pre><code class="hljs language-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    view.showProgressBar()
+
+    <span class="hljs-keyword">var</span> user: User? = <span class="hljs-literal">null</span>
+    <span class="hljs-keyword">var</span> posting: Posting? = <span class="hljs-literal">null</span>
+
+    <span class="hljs-keyword">val</span> userThread = thread {
+        user = getUserFromApi() <span class="hljs-comment">// API</span>
+    }
+    <span class="hljs-keyword">val</span> postingThread = thread {
+        posting = getPostingFromApi() <span class="hljs-comment">// API</span>
+    }
+
+    userThread.join()
+    postingThread.join()
+
+    view.hideProgressBar()
+    view.showUI(user, posting)
+}
+</code></pre>
+        <p>블로킹 가능한 스레드를 생성하여 처리하고, 이후 UI 스레드로 전환하여 처리하는 것이 가장 직관적인 방법입니다.</p>
+        <p>다만, 다음과 같은 문제점이 있습니다.</p>
+        <ul>
+         <li>스레드를 멈출 수 있는 방법이 없어 메모리 누수로 이어질 수 있습니다.</li>
+         <li>스레드를 많이 생성하면 비용이 많이 듭니다.</li>
+         <li>스레드를 자주 전환할 경우, 복잡도를 증가시키며 관리하기 어렵습니다.</li>
+        </ul>
+        <h3 id="callback-이용">Callback 이용</h3>
+        <pre><code class="hljs language-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    view.showProgressBar()
+
+    getUserFromApi { user -&gt; <span class="hljs-comment">// API</span>
+        getPostingFromApi { posting -&gt; <span class="hljs-comment">// API</span>
+
+            view.hideProgressBar()
+            view.showUI(user, posting)
+        }
+    }
+}
+</code></pre>
+        <p>함수를 논블로킹으로 만들고, 함수의 작업이 끝났을 때 호출될 콜백 함수를 넘겨주는 콜백으로 처리하는 방법도 있습니다.</p>
+        <p>다만, 다음과 같은 문제점이 있습니다.</p>
+        <ul>
+         <li>콜백 또한 중간에 작업을 취소할 수 없습니다.</li>
+         <li>콜백 구조에서는 사용자 정보와 게시글 정보를 병렬로 동시에 처리할 수 없습니다.</li>
+         <li>들여쓰기가 많아져 코드가 읽기 어려워지는 콜백 지옥이 발생할 수 있습니다.</li>
+         <li>작업의 순서를 제어하기 힘듭니다.</li>
+        </ul>
+        <h3 id="rxjava-이용">RxJava 이용</h3>
+        <pre><code class="hljs language-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    view.showProgressBar()
+
+    <span class="hljs-keyword">val</span> userSingle = Single.fromCallable { getUserFromApi() } <span class="hljs-comment">// API</span>
+        .subscribeOn(Schedulers.io())
+
+    <span class="hljs-keyword">val</span> postingSingle = Single.fromCallable { getPostingFromApi() } <span class="hljs-comment">// API</span>
+        .subscribeOn(Schedulers.io())
+
+    disposables += Single.zip(
+        userSingle,
+        postingSingle,
+        { user, posting -&gt; Pair(user, posting) }
+    )
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe { (user, posting) -&gt;
+
+            view.hideProgressBar()
+            view.showUI(user, posting)
+        }
+}
+</code></pre>
+        <p>RxJava를 통해 메모리 누수가 없고, 취소가 가능하며, 스레드 또한 적절하게 사용할 수 있습니다.</p>
+        <p>다만, 다음과 같은 문제점이 있습니다.</p>
+        <ul>
+         <li>RxJava는 구현하기에 아주 복잡하며, 앞서 봤던 이상적인 코드의 형태와 완전히 다릅니다.</li>
+         <li>RxJava의 Single, Observable 등으로 Wrapping 해야하므로 상당한 코드량이 변경되어야 할 수 있습니다.</li>
+         <li>병렬 처리를 위해 Pair와 같은 불필요한 처리가 필요할 수 있습니다.</li>
+        </ul>
+        <h3 id="coroutine-이용">Coroutine 이용</h3>
+        <pre><code class="hljs language-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    view.showProgressBar()
+
+    scope.launch {
+        <span class="hljs-keyword">val</span> user = async { getUserFromApi() } <span class="hljs-comment">// API</span>
+        <span class="hljs-keyword">val</span> posting = async { getPostingFromApi() } <span class="hljs-comment">// API</span>
+
+        view.hideProgressBar()
+        view.showUI(user.awit(), posting.awit())
+    }
+}
+</code></pre>
+        <p>코루틴을 통해 기존 코드의 큰 변경 없이 이상적인 형태의 코드와 비슷하게 작성 가능하며, 메모리 누수가 없고, 취소가 가능하게 사용 가능합니다.</p>
+        <p>코루틴 사용하면 스레드를 블로킹 하지 않고, 코루틴을 중단합니다.</p>
+        <p>코루틴의 중단은 데이터가 오는 걸 기다릴 때, 스레드를 블로킹 하는 대신 코루틴을 잠시 멈추는 방식으로 동작합니다.</p>
+        <p>코루틴이 잠시 멈춰 있는 동안, UI 스레드는 다른 작업을 할 수 있고, 데이터가 준비되면 코루틴은 다시 UI 스레드를 할당받아 이전에 멈춘 지점부터 다시 시작됩니다.</p>
+        <p>스레드를 명시적으로 생성하면 비용이 크고, 스레드를 위한 메모리 또한 할당 되어야 합니다.</p>
+        <p>해당 스레드가 응답을 기다릴 때마다 블로킹하고 있다면 비용이 많이 발생하겠지만, 코루틴을 통해 스레드를 블로킹하지 않고 코루틴을 중단하여 비교적 저렴한 비용으로 처리가 가능합니다.</p>
+        <p>추가적으로, KMP 환경에서도 코루틴을 지원하기에 앞으로 코루틴을 활용할 방안이 더 많아질 것 같습니다 🙂</p>
+       </div>
+       <div class="kobweb-box kobweb-align-top-start" style="padding: 4rem 0px; width: 100%;">
+        <div class="utterances">
+         <iframe class="utterances-frame" title="Comments" scrolling="no" src="https://utteranc.es/utterances.html?src=https%3A%2F%2Futteranc.es%2Fclient.js&amp;repo=ParkJin0318%2FParkJin0318.github.io&amp;issue-term=pathname&amp;label=comments&amp;theme=github-light&amp;crossorigin=anonymous&amp;async=&amp;url=http%3A%2F%2Flocalhost%3A8080%2Fcoroutine-introduction%3F_kobwebIsExporting%3Dtrue&amp;origin=http%3A%2F%2Flocalhost%3A8080&amp;pathname=coroutine-introduction&amp;title=Jin+Blog+-+Kotlin+Coroutine%EC%9D%84+%EB%8F%84%EC%9E%85%ED%95%98%EB%A9%B4+%EC%A2%8B%EC%9D%80+%EC%9D%B4%EC%9C%A0&amp;description=Powered+by+Kobweb&amp;og%3Atitle=&amp;session=" loading="lazy"></iframe>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script src="/blog.js"></script>
+ </body>
+</html>
