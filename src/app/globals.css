@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/Pretendard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/Pretendard-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+/* Markdown content styles */
+.markdown-content h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-top: 1.625rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-content h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-top: 1.625rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-content h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-top: 1.625rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-content h4 {
+  font-size: 1.125rem;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-top: 1.625rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-content h5 {
+  font-size: 0.83rem;
+  font-weight: bold;
+  line-height: 1.7;
+  margin-top: 1.625rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-content h6 {
+  font-size: 0.67rem;
+  font-weight: bold;
+  line-height: 1.7;
+  margin-top: 1.625rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-content p {
+  margin-bottom: 0.8rem;
+}
+
+.markdown-content ul {
+  width: 100%;
+  overflow-wrap: break-word;
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.markdown-content ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+
+.markdown-content li,
+.markdown-content ol,
+.markdown-content ul {
+  margin-bottom: 0.25rem;
+}
+
+.markdown-content code {
+  font-weight: 500;
+}
+
+.markdown-content pre {
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.markdown-content pre > code {
+  display: block;
+  width: 100%;
+  font-size: 0.9rem;
+  overflow-x: auto;
+}
+
+.markdown-content a {
+  color: #296FCF;
+  text-decoration: underline;
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid #E0E1E3;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #4e5968;
+}
+
+.dark .markdown-content blockquote {
+  border-left-color: #6C6E6F;
+  color: #C9D1DD;
+}
