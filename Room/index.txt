@@ -1,0 +1,162 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+6:I[9734,["878","static/chunks/878-3f3b7455e66154e5.js","731","static/chunks/731-29444b5e989e86b5.js","185","static/chunks/app/layout-882d235f1351cb91.js"],"ThemeProvider"]
+7:I[6090,["878","static/chunks/878-3f3b7455e66154e5.js","731","static/chunks/731-29444b5e989e86b5.js","185","static/chunks/app/layout-882d235f1351cb91.js"],"default"]
+4:["slug","Room","d"]
+0:["r3Dxuibdar6ZGW3hhz1Qn",[[["",{"children":[["slug","Room","d"],{"children":["__PAGE__?{\"slug\":\"Room\"}",{}]}]},"$undefined","$undefined",true],["",{"children":[["slug","Room","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/691d0e4567cd5f4c.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ko","suppressHydrationWarning":true,"children":["$","body",null,{"className":"bg-background-light dark:bg-background-dark text-content-light dark:text-content-dark","children":["$","$L6",null,{"children":[["$","$L7",null,{}],["$","main",null,{"className":"flex flex-col items-center w-full max-w-content mx-auto","children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]}]}]],null],null],["$L8",null]]]]
+9:I[9291,["878","static/chunks/878-3f3b7455e66154e5.js","303","static/chunks/303-046a910b46eb824e.js","42","static/chunks/app/%5Bslug%5D/page-4244951db7551f4e.js"],"Image"]
+a:I[8827,["878","static/chunks/878-3f3b7455e66154e5.js","303","static/chunks/303-046a910b46eb824e.js","42","static/chunks/app/%5Bslug%5D/page-4244951db7551f4e.js"],"default"]
+b:I[4184,["878","static/chunks/878-3f3b7455e66154e5.js","303","static/chunks/303-046a910b46eb824e.js","42","static/chunks/app/%5Bslug%5D/page-4244951db7551f4e.js"],"default"]
+d:I[3593,["878","static/chunks/878-3f3b7455e66154e5.js","303","static/chunks/303-046a910b46eb824e.js","42","static/chunks/app/%5Bslug%5D/page-4244951db7551f4e.js"],"default"]
+c:T1116,
+# Room이란?
+안드로이드 앱의 내부 DB로 Jetpack 라이브러리 중 하나입니다.   
+SQLite에 대한 추상화 레이어를 제공하여 원활한 데이터베이스 엑세스를 제공합니다.
+
+<img src="/images/room/database.png" alt="database" width="50%"/>
+- Database: 데이터베이스 홀더를 포함하며 앱의 지속적인 관계형 데이터의 기본 연결을 위한 기본 액세스 포인트 역할을 합니다.
+- DAO: 데이터베이스에 액세스하는 데 사용되는 메서드가 포함되어 있습니다.
+- Entites: 데이터베이스 내의 테이블을 나타냅니다.
+
+# Room 사용방법
+간단하게 메모장으로 사용할 수 있는 DB를 만들어보겠습니다.
+
+### 빌드 환경 설정
+build.gradle
+```kotlin
+plugins {
+    ...
+    id 'kotlin-kapt'
+}
+```
+kotlin kapt 플러그인을 추가해줍니다.
+
+```kotlin
+dependencies {
+    ...
+    kapt "androidx.room:room-compiler:버전정보"
+    testImplementation "androidx.room:room-testing:버전정보"
+    implementation "androidx.room:room-runtime:버전정보"
+}
+```
+room 관련 라이브러리를 추가해줍니다.
+
+### Entity 생성
+MemoEntity.kt
+```kotlin
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "memo_table")
+data class MemoEntity(
+    @PrimaryKey(autoGenerate = true)
+    val idx: Int,
+    val title: String,
+    val content: String
+)
+```
+메모의 컬럼 정보를 저장할 테이블 객체를 만들어줍니다.
+
+### Dao 생성
+MemoDao.kt
+```kotlin
+import androidx.room.*
+
+@Dao
+interface MemoDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertMemo(entity: MemoEntity)
+
+    @Query("SELECT * FROM memo_table")
+    fun getAllMemo(): List<MemoEntity>
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    fun updateMemo(entity: MemoEntity)
+
+    @Query("DELETE FROM memo_table WHERE idx=:idx")
+    fun deleteMemo(idx : Int)
+
+    @Query("DELETE FROM memo_table")
+    fun deleteAllMemo()
+}
+```
+데이터베이스에 접근 가능한 쿼리를 제공해주는 Dao를 만들어줍니다.
+
+### Database 생성
+```kotlin
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+
+@Database(entities = [MemoEntity::class], version = 1, exportSchema = false)
+abstract class MemoDatabase : RoomDatabase() {
+
+    abstract fun memoDao() : MemoDao
+
+    companion object {
+        private var INSTANCE : MemoDatabase? = null
+
+        fun getInstance(context: Context) : MemoDatabase? {
+            if (INSTANCE == null) {
+                synchronized(MemoDatabase::class) {
+                    INSTANCE = Room.databaseBuilder(context.applicationContext,
+                        MemoDatabase::class.java, "memo-db")
+                        .fallbackToDestructiveMigration()
+                        .allowMainThreadQueries()
+                        .build()
+                }
+            }
+            return INSTANCE
+        }
+    }
+}
+```
+데이터베이스를 엑세스 할 수 있으며, Entity와 버전 정보를 관리해줄 Database를 만들어줍니다.
+
+### Room 적용
+```kotlin
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var memoDao: MemoDao
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        
+        accessDatabase()
+        Thread(insertMemo).start()
+    }
+    
+    private fun accessDatabase() {
+        val memoDatabase = MemoDatabase.getInstance(this)!!
+        memoDao = memoDatabase.memoDao()
+    }
+
+    private val insertMemo = Runnable {
+        val entity = MemoEntity(
+            idx = 0,
+            title = "Room 사용방법",
+            content = "정말 쉬워요!"
+        )
+        memoDao.insertMemo(entity)
+    }
+}
+```
+위와 같은 방식으로 Thread를 이용하여 쉽게 사용할 수 있습니다. 그리고
+
+
+```kotlin
+runOnUiThread { 
+    // ...
+}
+```
+runOnUiThread를 사용하면 Thread 사용할 때 뷰를 안전하게 접근할 수 있습니다.
+
+# 끝내며
+확실히 SQLite에 비해 Room은 쿼리 유효성을 컴파일 중에 검사할 수 있어서 편리했습니다.    
+이번 글에서는 Room을 그냥 사용해봤는데, Room은 다양한 반환 유형을 지원하기 때문에 RxJava나 코루틴 등을 이용한 비동기처리가 가능합니다.
+2:["$","article",null,{"className":"w-full px-4","children":[["$","div",null,{"className":"flex flex-col w-full","children":[["$","$L9",null,{"src":"/images/room/thumbnail.jpg","alt":"thumbnail","width":320,"height":240,"className":"w-[20rem] object-contain"}],["$","h1",null,{"className":"text-[3rem] font-bold mt-8 text-content-light dark:text-content-dark","children":"간단한 Room 사용 방법"}],["$","$La",null,{"tags":["Android","Room","Database"],"className":"w-full mt-3"}],["$","span",null,{"className":"text-[0.9rem] font-normal text-content-secondary-light dark:text-content-secondary-dark mt-4","children":"2021.01.20"}]]}],["$","div",null,{"className":"mt-16","children":["$","$Lb",null,{"content":"$c"}]}],["$","$Ld",null,{}]]}]
+8:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"간단한 Room 사용 방법 - Jin Blog"}],["$","meta","3",{"name":"description","content":"안드로이드 앱의 내부 DB로 Jetpack 라이브러리 중 하나입니다."}],["$","link","4",{"rel":"icon","href":"/favicon.ico"}]]
+1:null
