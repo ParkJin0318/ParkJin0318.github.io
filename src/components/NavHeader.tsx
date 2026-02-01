@@ -10,7 +10,7 @@ export default function NavHeader() {
 
   return (
     <header className="sticky top-0 z-[9998] w-full min-h-[3.75rem] bg-background-light dark:bg-background-dark">
-      <div className="flex items-center justify-between w-full h-full px-8">
+      <div className="flex items-center justify-between w-full h-full px-8 py-3">
         <Link href="/" className="flex items-center cursor-pointer">
           <span className="text-[1.25rem] font-bold text-content-light dark:text-content-dark">
             Jin{' '}
