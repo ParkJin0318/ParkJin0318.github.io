@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://parkjin0318.github.io/sitemap.xml
