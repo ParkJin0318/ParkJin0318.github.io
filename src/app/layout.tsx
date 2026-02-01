@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Jin Blog',
   description: "Jin's personal blog",
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon.svg',
   },
 };
 
@@ -18,12 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className="bg-background-light dark:bg-background-dark text-content-light dark:text-content-dark">
+      <body className="min-h-screen bg-background-light dark:bg-background-dark text-content-light dark:text-content-dark">
         <ThemeProvider>
           <NavHeader />
-          <main className="flex flex-col items-center w-full max-w-content mx-auto">
-            {children}
-          </main>
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>

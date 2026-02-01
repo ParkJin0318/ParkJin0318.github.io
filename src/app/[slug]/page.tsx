@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getAllPosts, getPostBySlug } from '@/lib/posts';
-import { getThumbnailPath } from '@/lib/utils';
 import PostHeader from '@/components/post/PostHeader';
 import MarkdownContent from '@/components/MarkdownContent';
 import PostComments from '@/components/post/PostComments';
@@ -43,20 +42,14 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound();
   }
 
-  const thumbnail = getThumbnailPath(slug);
-
   return (
-    <article className="w-full px-4">
+    <article className="w-full max-w-[50rem] mx-auto px-6 py-12">
       <PostHeader
         title={post.title}
-        thumbnail={thumbnail}
         createdAt={post.createdAt}
-        tags={post.tags}
       />
 
-      <div className="mt-16">
-        <MarkdownContent content={post.content} />
-      </div>
+      <MarkdownContent content={post.content} />
 
       <PostComments />
     </article>

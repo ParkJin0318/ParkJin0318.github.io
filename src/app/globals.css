@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'Pretendard';
-  src: url('/fonts/Pretendard-Regular.woff2') format('woff2');
+  src: url('/fonts/woff2/Pretendard-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: 'Pretendard';
-  src: url('/fonts/Pretendard-Medium.woff2') format('woff2');
+  src: url('/fonts/woff2/Pretendard-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -20,119 +20,185 @@
 
 @font-face {
   font-family: 'Pretendard';
-  src: url('/fonts/Pretendard-Bold.woff2') format('woff2');
+  src: url('/fonts/woff2/Pretendard-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/woff2/Pretendard-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 body {
-  font-family: 'Pretendard', sans-serif;
-  font-size: 1.125rem;
-  line-height: 1.5;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Markdown content styles */
+/* Markdown content styles - Toss Tech style */
+.markdown-content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+
 .markdown-content h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  line-height: 1.5;
-  margin-top: 1.625rem;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: 3rem;
   margin-bottom: 1rem;
 }
 
 .markdown-content h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  line-height: 1.5;
-  margin-top: 1.625rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
 
 .markdown-content h3 {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.25rem;
+  font-weight: 700;
   line-height: 1.5;
-  margin-top: 1.625rem;
-  margin-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
 }
 
 .markdown-content h4 {
   font-size: 1.125rem;
-  font-weight: bold;
+  font-weight: 600;
   line-height: 1.5;
-  margin-top: 1.625rem;
-  margin-bottom: 1rem;
-}
-
-.markdown-content h5 {
-  font-size: 0.83rem;
-  font-weight: bold;
-  line-height: 1.7;
-  margin-top: 1.625rem;
-  margin-bottom: 1rem;
-}
-
-.markdown-content h6 {
-  font-size: 0.67rem;
-  font-weight: bold;
-  line-height: 1.7;
-  margin-top: 1.625rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .markdown-content p {
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .markdown-content ul {
-  width: 100%;
-  overflow-wrap: break-word;
   list-style-type: disc;
-  padding-left: 1.5rem;
 }
 
 .markdown-content ol {
   list-style-type: decimal;
-  padding-left: 1.5rem;
 }
 
-.markdown-content li,
-.markdown-content ol,
-.markdown-content ul {
-  margin-bottom: 0.25rem;
+.markdown-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
 }
 
 .markdown-content code {
-  font-weight: 500;
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 0.9em;
+  background-color: #f1f3f5;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+.dark .markdown-content code {
+  background-color: #2d2d2d;
 }
 
 .markdown-content pre {
-  width: 100%;
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .markdown-content pre > code {
   display: block;
-  width: 100%;
-  font-size: 0.9rem;
+  padding: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
   overflow-x: auto;
+  background-color: #1e1e1e;
+  color: #d4d4d4;
 }
 
 .markdown-content a {
-  color: #296FCF;
-  text-decoration: underline;
+  color: #96c852;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.markdown-content a:hover {
+  border-bottom-color: #96c852;
 }
 
 .markdown-content blockquote {
-  border-left: 4px solid #E0E1E3;
-  padding-left: 1rem;
-  margin: 1rem 0;
-  color: #4e5968;
+  border-left: 3px solid #96c852;
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
+  color: #6B7684;
+  font-style: italic;
 }
 
 .dark .markdown-content blockquote {
-  border-left-color: #6C6E6F;
-  color: #C9D1DD;
+  color: #9CA3AF;
+}
+
+.markdown-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.markdown-content hr {
+  border: none;
+  border-top: 1px solid #E5E8EB;
+  margin: 3rem 0;
+}
+
+.dark .markdown-content hr {
+  border-top-color: #333333;
+}
+
+.markdown-content strong {
+  font-weight: 600;
+}
+
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid #E5E8EB;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.dark .markdown-content th,
+.dark .markdown-content td {
+  border-color: #333333;
+}
+
+.markdown-content th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.dark .markdown-content th {
+  background-color: #2d2d2d;
 }

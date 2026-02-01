@@ -38,7 +38,7 @@ layout.tsx (root layout)
 - `src/components/` - Reusable UI components
   - `NavHeader.tsx` - Navigation header
   - `TabRow.tsx` - Category tabs
-  - `post/` - Post-related components (PostCard, PostHeader, PostTags, PostComments)
+  - `post/` - Post-related components (PostCard, PostHeader, PostComments)
   - `MarkdownContent.tsx` - Markdown renderer with syntax highlighting
 - `src/contexts/` - React contexts (ThemeContext for dark/light mode)
 - `src/lib/` - Utility functions (posts.ts for markdown processing)

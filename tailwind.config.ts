@@ -10,34 +10,38 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#296FCF',
-        'primary-bg': '#B9D2F4',
+        primary: '#576283',
+        'primary-hover': '#49536f',
         content: {
-          light: '#191f28',
-          dark: '#FFFFFF',
+          DEFAULT: '#212529',
+          light: '#212529',
+          dark: '#E5E5E5',
         },
         'content-secondary': {
-          light: '#4e5968',
-          dark: '#C9D1DD',
+          DEFAULT: '#6B7684',
+          light: '#6B7684',
+          dark: '#9CA3AF',
         },
         background: {
           light: '#FFFFFF',
-          dark: '#2B2B2B',
+          dark: '#1a1a1a',
         },
         divider: {
-          light: '#E0E1E3',
-          dark: '#6C6E6F',
-        },
-        tag: {
-          text: '#191f28',
-          bg: '#f2f4f6',
+          light: '#E5E8EB',
+          dark: '#333333',
         },
       },
       fontFamily: {
         pretendard: ['Pretendard', 'sans-serif'],
       },
       maxWidth: {
-        'content': '70rem',
+        content: '42.5rem',
+      },
+      fontSize: {
+        'title-lg': ['2.5rem', { lineHeight: '1.3', fontWeight: '700' }],
+        'title-md': ['1.5rem', { lineHeight: '1.4', fontWeight: '700' }],
+        'body': ['1rem', { lineHeight: '1.7' }],
+        'small': ['0.875rem', { lineHeight: '1.5' }],
       },
     },
   },

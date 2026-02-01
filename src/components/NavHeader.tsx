@@ -9,44 +9,41 @@ export default function NavHeader() {
   const { colorMode, toggleColorMode } = useTheme();
 
   return (
-    <header className="sticky top-0 z-[9998] w-full min-h-[3.75rem] bg-background-light dark:bg-background-dark">
-      <div className="flex items-center justify-between w-full h-full px-8 py-3">
-        <Link href="/" className="flex items-center cursor-pointer">
-          <span className="text-[1.25rem] font-bold text-content-light dark:text-content-dark">
-            Jin{' '}
+    <header className="sticky top-0 z-[9998] w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+      <div className="max-w-[50rem] mx-auto flex items-center justify-between px-6 py-5">
+        <Link href="/" className="flex items-center gap-1 group">
+          <span className="text-xl font-bold text-content-light dark:text-content-dark">
+            Jin
           </span>
-          <span className="text-[1.25rem] font-normal text-content-secondary-light dark:text-content-secondary-dark">
+          <span className="text-xl font-medium text-primary">
             Blog
           </span>
         </Link>
 
-        <div className="flex items-center gap-4 text-[1.5rem]">
+        <div className="flex items-center gap-5">
           <a
             href="https://github.com/parkjin0318"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-6 h-6 cursor-pointer"
+            className="opacity-70 hover:opacity-100 transition-opacity"
           >
             <Image
               src={colorMode === 'dark' ? '/github-mark-white.svg' : '/github-mark.svg'}
-              alt="github-mark"
-              width={24}
-              height={24}
-              className="w-full h-full"
+              alt="GitHub"
+              width={22}
+              height={22}
             />
           </a>
 
           <button
             onClick={toggleColorMode}
-            className="w-6 h-6 cursor-pointer text-content-light dark:text-content-dark"
+            className="opacity-70 hover:opacity-100 transition-opacity text-content-light dark:text-content-dark"
             aria-label="Toggle color mode"
           >
-            {colorMode === 'light' ? <Moon size={24} /> : <Sun size={24} />}
+            {colorMode === 'light' ? <Moon size={22} /> : <Sun size={22} />}
           </button>
         </div>
       </div>
-
-      <div className="w-full border-t border-divider-light dark:border-divider-dark" />
     </header>
   );
 }
