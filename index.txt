@@ -3,7 +3,7 @@
 7:I[6090,["731","static/chunks/731-ac1a68db58e8f292.js","185","static/chunks/app/layout-be189ddcece6cb27.js"],"default"]
 8:I[4707,[],""]
 9:I[6423,[],""]
-3:T14d0,
+3:T1387,
 요즘은 한 번 만들어 놓고 끝나는 자동화보다, **매일 굴리는 개인용 에이전트**가 더 가치가 큰 것 같습니다.
 
 다만 에이전트를 실제로 쓰기 시작하면 아래 문제를 자주 만나게 됩니다.
@@ -92,7 +92,6 @@ OpenClaw를 꾸준히 쓰게 만든 건 기능보다 **운영 루프**였습니�
   - 기획 정리, 지표 분석, 가격 전략 초안
 - 퀀트 에이전트
   - 정해진 루틴성 점검과 스캔
-  - 자세한 운영 방식은 공개 글에서는 생략합니다
 - 디자인 에이전트
   - 화면 구성 아이디어, 와이어프레임, UI 문서화
 
@@ -151,20 +150,6 @@ openclaw gateway restart
 - 타임아웃
 - 재시도
 - 실패 시 사람에게 질문하고 멈추기
-
-
-## 운영 루틴
-
-### 아침 1분 체크
-
-```bash
-openclaw gateway status
-```
-
-### heartbeat
-
-자동화는 잘 도는 날보다, 죽은 날이 문제입니다.
-그래서 주기적으로 상태를 점검하고 이상하면 알림을 받는 루틴을 둡니다.
 
 
 ## 마무리
@@ -440,6 +425,6 @@ fun main() {
 해당 스레드가 응답을 기다릴 때마다 블로킹하고 있다면 비용이 많이 발생하겠지만, 코루틴을 통해 스레드를 블로킹하지 않고 코루틴을 중단하여 비교적 저렴한 비용으로 처리가 가능합니다.
 
 추가적으로, KMP 환경에서도 코루틴을 지원하기에 앞으로 코루틴을 활용할 방안이 더 많아질 것 같습니다 🙂
-0:["PRc5vowiJDhnwsegx2PTb",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",{"children":["__PAGE__",{},[["$L1",["$","$L2",null,{"posts":[{"slug":"openclaw-setup","category":"개발","title":"나의 OpenClaw 세팅","description":"멀티 에이전트와 Notion 태스크 관리로 매일 굴리는 개인용 에이전트 만들기","createdAt":"2026.02.23","tags":["Agent","Automation","OpenClaw","LLM"],"content":"$3"},{"slug":"rag-code-base-bot","category":"개발","title":"RAG 기반 코드베이스 Q&A 봇 만들기","description":"사내 코드 정책 질문을 자동화하는 슬랙 봇 개발기","createdAt":"2026.02.01","tags":["RAG","LLM","Python"],"content":"$4"},{"slug":"coroutine-introduction","category":"개발","title":"Kotlin Coroutine을 도입하면 좋은 이유","description":"Kotlin Coroutine을 도입하면 좋은 이유에 대해여","createdAt":"2023.08.25","tags":["Android","Coroutine"],"content":"$5"}]}],null],null],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/3e29b3c3adab0b56.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ko","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-screen bg-background-light dark:bg-background-dark text-content-light dark:text-content-dark","children":["$","$L6",null,{"children":[["$","$L7",null,{}],["$","main",null,{"children":["$","$L8",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L9",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]}]}]],null],null],["$La",null]]]]
+0:["i35p4RHOssi9SXWkzh4aX",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",{"children":["__PAGE__",{},[["$L1",["$","$L2",null,{"posts":[{"slug":"openclaw-setup","category":"개발","title":"나의 OpenClaw 세팅","description":"멀티 에이전트와 Notion 태스크 관리로 매일 굴리는 개인용 에이전트 만들기","createdAt":"2026.02.23","tags":["Agent","Automation","OpenClaw","LLM"],"content":"$3"},{"slug":"rag-code-base-bot","category":"개발","title":"RAG 기반 코드베이스 Q&A 봇 만들기","description":"사내 코드 정책 질문을 자동화하는 슬랙 봇 개발기","createdAt":"2026.02.01","tags":["RAG","LLM","Python"],"content":"$4"},{"slug":"coroutine-introduction","category":"개발","title":"Kotlin Coroutine을 도입하면 좋은 이유","description":"Kotlin Coroutine을 도입하면 좋은 이유에 대해여","createdAt":"2023.08.25","tags":["Android","Coroutine"],"content":"$5"}]}],null],null],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/3e29b3c3adab0b56.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ko","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-screen bg-background-light dark:bg-background-dark text-content-light dark:text-content-dark","children":["$","$L6",null,{"children":[["$","$L7",null,{}],["$","main",null,{"children":["$","$L8",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L9",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]}]}]],null],null],["$La",null]]]]
 a:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Jin Blog"}],["$","meta","3",{"name":"description","content":"개발과 기술에 대한 이야기를 나누는 블로그입니다."}],["$","meta","4",{"name":"author","content":"Jin Park"}],["$","meta","5",{"name":"keywords","content":"개발,프로그래밍,Android,Kotlin,기술 블로그"}],["$","meta","6",{"name":"creator","content":"Jin Park"}],["$","meta","7",{"name":"robots","content":"index, follow"}],["$","meta","8",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","9",{"name":"google-site-verification","content":"KKfWkaTFJxAnZDpOyQWppoMWgJuDPb57poCRcJXu5vk"}],["$","meta","10",{"property":"og:title","content":"Jin Blog"}],["$","meta","11",{"property":"og:description","content":"개발과 기술에 대한 이야기를 나누는 블로그입니다."}],["$","meta","12",{"property":"og:url","content":"https://parkjin0318.github.io/"}],["$","meta","13",{"property":"og:site_name","content":"Jin Blog"}],["$","meta","14",{"property":"og:locale","content":"ko_KR"}],["$","meta","15",{"property":"og:type","content":"website"}],["$","meta","16",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","17",{"name":"twitter:title","content":"Jin Blog"}],["$","meta","18",{"name":"twitter:description","content":"개발과 기술에 대한 이야기를 나누는 블로그입니다."}],["$","link","19",{"rel":"icon","href":"/favicon.svg"}]]
 1:null
