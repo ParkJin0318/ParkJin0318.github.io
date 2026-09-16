@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { Post } from '@/types/post';
+import { sortCategories } from './categories';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
 
@@ -56,7 +57,7 @@ export function getPostBySlug(slug: string): Post | null {
 
 export function getAllCategories(): string[] {
   const posts = getAllPosts();
-  return [...new Set(posts.map((post) => post.category))];
+  return sortCategories([...new Set(posts.map((post) => post.category))]);
 }
 
 export function getAllTags(): string[] {

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import TabRow from '@/components/TabRow';
 import PostCard from '@/components/post/PostCard';
 import { Post } from '@/types/post';
+import { sortCategories } from '@/lib/categories';
 
 interface HomeContentProps {
   posts: Post[];
@@ -14,7 +15,7 @@ export default function HomeContent({ posts }: HomeContentProps) {
   const router = useRouter();
 
   const categories = useMemo(() => {
-    return [...new Set(posts.map((post) => post.category))];
+    return sortCategories([...new Set(posts.map((post) => post.category))]);
   }, [posts]);
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(
