@@ -82,7 +82,7 @@ Color palette:
 ## Deployment
 
 GitHub Actions (`.github/workflows/deploy.yml`) auto-deploys on push to `main`:
-- Uses Node.js 20
+- Uses Node.js 24
 - Runs `npm ci` and `npm run build`
 - Exports static site to `out/`
 - Deploys to GitHub Pages
