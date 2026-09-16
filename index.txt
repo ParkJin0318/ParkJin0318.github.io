@@ -1,9 +1,105 @@
 2:I[8636,["931","static/chunks/app/page-0e9375ae0ef64867.js"],"default"]
-4:I[9734,["731","static/chunks/731-ac1a68db58e8f292.js","185","static/chunks/app/layout-be189ddcece6cb27.js"],"ThemeProvider"]
-5:I[6090,["731","static/chunks/731-ac1a68db58e8f292.js","185","static/chunks/app/layout-be189ddcece6cb27.js"],"default"]
-6:I[4707,[],""]
-7:I[6423,[],""]
-3:T1223,
+5:I[9734,["731","static/chunks/731-ac1a68db58e8f292.js","185","static/chunks/app/layout-be189ddcece6cb27.js"],"ThemeProvider"]
+6:I[6090,["731","static/chunks/731-ac1a68db58e8f292.js","185","static/chunks/app/layout-be189ddcece6cb27.js"],"default"]
+7:I[4707,[],""]
+8:I[6423,[],""]
+3:T21f9,
+회사를 다니면서 학교를 다니고 있습니다. 이번 학기는 6과목 18학점입니다.
+
+수업에 앉아 있는 시간은 줄일 수 없습니다. 줄일 수 있는 건 그 주변입니다. 그래서 학기 시작에 맞춰 대학 생활 자체를 AX 대상으로 잡았습니다.
+
+## 한 주에 하는 일은 늘 같습니다
+
+자료를 받고, 그걸 읽을 수 있는 형태로 만들고, 이해하고, 나중을 위해 남기고, 시험 전에 다시 꺼냅니다. 매주 이 다섯 가지의 반복입니다.
+
+그런데 제가 꼭 해야 하는 건 가운데 하나뿐입니다.
+
+![대학 생활 한 주의 다섯 단계. 받기·만들기·남기기는 기계가, 이해하기는 사람이, 꺼내기는 반반이 맡는다](/images/university_ax/weekly-loop.svg)
+
+나머지 넷은 전부 형식 변환입니다. 파일을 옮기고 음성을 글자로 바꾸고 흩어진 걸 한자리에 모으는 일이요. 사람이 해도 되지만 사람이 해야 할 이유는 없습니다.
+
+AI를 어디에 끼워 넣을까부터 시작하면 AX는 대개 실패합니다. 무엇을 사람 손에서 뗄 수 있는가가 먼저입니다. 저는 그 넷을 떼어내서 남은 하나에 시간을 몰아주기로 했습니다.
+
+## 받기 — 사람용 인터페이스를 기계용으로
+
+학교 서비스는 세 곳으로 나뉘어 있고 전부 사람이 브라우저에서 직접 클릭하도록 만들어져 있습니다. 여기에 에이전트를 붙이려면 먼저 기계가 읽을 수 있는 모양으로 바꿔야 합니다. 학생 서비스를 감싸는 CLI를 하나 만들었습니다. 조회 결과가 전부 JSON으로 나옵니다.
+
+**AX의 첫 단추는 대체로 여기입니다.** 이 층을 건너뛰면 그 위에 뭘 올려도 화면을 긁어 대는 일이 됩니다. 반대로 이게 있으면 그 위층은 전부 쉬워집니다.
+
+여기서 선을 하나 그었습니다. 명령 하나가 웹에서 버튼 한 번 누르는 것과 정확히 같은 요청만 보내도록 했고 수강신청 쪽에는 타이머도 재시도도 넣지 않았습니다. 교칙이 매크로를 금지하고 있고 그 선은 도구한테 맡길 문제가 아니거든요.
+
+## 만들기 — 자료의 절반은 텍스트가 아닙니다
+
+받아 놓고 보니 슬라이드는 교재를 스캔한 그림이고 강의는 영상이고 대면 수업은 녹음뿐이었습니다. 읽을 수 있게 바꾸는 층이 따로 필요했습니다. 슬라이드는 비전 모델로 읽고 음성은 whisper로 전사합니다. 둘 다 맥에서 로컬로 돕니다. 강의 자료는 교수 저작물이고 강의실 녹음에는 다른 학생 목소리가 들어갑니다. 외부로 올릴 성격의 파일이 아닙니다.
+
+**여기서 제일 크게 데였습니다. 자동 전사는 조용히 빠뜨립니다.** 어느 구간이 무음으로 판정되면 그 구간만 통째로 건너뛴 채 성공을 돌려줍니다. 어떤 수업은 녹음이 거의 다 날아갔는데 파일을 열어보기 전까지는 멀쩡해 보였습니다.
+
+![명령은 성공을 돌려주지만 파일 안은 드문드문 비어 있다](/images/university_ax/silent-failure.svg)
+
+이게 AX에서 가장 고약한 실패입니다. 대놓고 실패하면 차라리 낫습니다. 성공한 척하는 자동화는 한참 지나서야 들키고 그때는 원본이 없습니다.
+
+그래서 전사가 끝날 때마다 빈 구간을 세고 그 수치를 파일에 박아 둡니다. 성공 기준이 전사 완료에서 미전사 0초로 옮겨 간 겁니다. 명령이 0을 반환하는 것과 일이 끝난 것은 다릅니다.
+
+## 남기기 — 요약은 쉽고 규율은 어렵습니다
+
+정리는 LLM이 잘하는 일입니다. 잘해서 오히려 조심해야 합니다.
+
+요약은 정말 잘합니다. 문제는 근거 없는 문장이 근거 있는 문장과 똑같이 매끄럽게 나온다는 점입니다. 시험 전에 그 정리를 읽을 사람은 어느 문장이 강의에서 나왔고 어느 문장이 지어낸 건지 구별할 방법이 없습니다.
+
+내용보다 규율을 먼저 정했습니다. 출처가 있는 것만 적고 각주로 원본에 건다. 강의가 말하지 않은 연결은 추론이라고 표시한다. 계획서와 실제 자료가 어긋나면 둘 다 남긴다. 모르는 것을 아는 것처럼 적지 않는다.
+
+마지막 항목이 자주 걸립니다. 퀴즈를 보고 채점 결과를 아직 못 봤는데 그걸 정답이라고 적어 두면 다음 학기에 그 페이지가 거짓말을 합니다. 확인 전까지는 확인 전이라고 적습니다.
+
+정리하면서 알게 된 것도 있습니다. 슬라이드는 뼈대일 뿐이고 교수의 해석은 나레이션에만 있습니다. 퀴즈에 나온 한 문항의 근거가 슬라이드 어디에도 없고 영상에만 있었습니다. 전사까지 붙인 보람이 여기서 나왔습니다.
+
+## 꺼내기 — 정리해 두면 안 읽습니다
+
+이게 내내 골칫거리였습니다. 아무리 잘 쌓아도 시험 전날에 한 번 열어 보는 게 전부라면 정리한 보람이 없습니다.
+
+정리본에서 문항을 뽑아 듀오링고처럼 푸는 웹앱을 만들었습니다. 간격 반복으로 오늘 풀 것만 띄워 줍니다. 쌓아 두고 찾아가는 구조를 때가 되면 찾아오는 구조로 뒤집었습니다.
+
+![왼쪽은 주차별 레슨이 이어지는 경로 화면, 오른쪽은 강의 내용에서 뽑은 O/X 문항](/images/university_ax/inhalingo.png)
+
+왼쪽이 과목별 경로이고 오른쪽이 실제 문항입니다. 저 O/X 문장은 제가 지어낸 게 아니라 그 주차 정리본에서 나온 것이고, 정리본은 다시 강의 영상에 각주로 걸려 있습니다.
+
+여기서 하나 못 박은 게 있습니다. 앱이 문제를 실시간으로 만들지 않습니다. 문항은 미리 저작해서 검증을 통과시킨 다음에 넣습니다. 풀 때마다 생성하면 같은 개념이 매번 다른 얼굴로 나와서 틀린 걸 다시 만났는지 알 길이 없고 무엇보다 그 문항이 맞는지 아무도 확인하지 않습니다.
+
+**AX라고 모든 단계에 LLM을 놓을 필요는 없습니다.** 생성은 오프라인에서 하고 런타임은 비워 두는 편이 검증 가능한 구조입니다.
+
+## 네 단계를 한 줄로
+
+손으로 이어 붙이다 보면 결국 순서를 잊어버립니다. 그래서 주차 하나를 처리하는 전 과정을 명령 하나로 굳혔습니다.
+
+```
+/inha-lecture 선형대수 3주차
+```
+
+순서에 규칙 두 개가 박혀 있습니다.
+
+**되돌릴 수 없는 단계는 맨 뒤에 놓습니다.** 퀴즈는 응시가 보통 한 번뿐이고 시작하면 타이머가 돕니다. 정리를 마치고 들어가야 근거를 갖고 답할 수 있습니다.
+
+**사람이 시간을 써야 하는 단계는 맨 앞에 놓습니다.** 강의 시청은 사람이 앉아 있어야 하고 자료 수집은 몇 분이면 끝납니다. 순서를 반대로 하면 기계가 일하는 동안 시청 진도는 0분입니다.
+
+그리고 제일 아프게 배운 것 하나. **자동화는 예외에서 무너집니다.** 분명히 대면 수업인데 한 주씩 걸러 웹강의인 과목이 있었습니다. 그 주는 영상을 봐야 출석으로 인정됩니다. 과목 단위로 규칙을 박아 뒀으면 출석을 통째로 놓쳤을 겁니다. 판별은 과목이 아니라 주차마다 다시 합니다.
+
+## 하지 않는 것
+
+경계를 먼저 그어 두지 않으면 이런 도구는 금방 선을 넘습니다.
+
+수강신청 매크로는 만들지 않습니다. 과제를 대신 쓰게 하지 않고 퀴즈도 제가 풉니다. 정리본은 LLM이 쓰지만 읽는 건 저고 복습 문제를 푸는 것도 접니다.
+
+AX가 대신 공부해 주지는 않습니다. 공부할 수 있는 상태까지 데려다 놓을 뿐입니다. 자료가 텍스트로 남아 있고 출처가 붙어 있고 3주 전에 배운 개념이 오늘 복습 큐에 떠 있는 상태요.
+
+## 학교에서 배운 게 회사에도 붙습니다
+
+세 주를 돌려 보고 남은 건 결국 도메인을 안 타는 것들이었습니다.
+
+사람용 인터페이스를 기계용으로 바꾸는 게 먼저다. 자동화의 성공 기준을 숫자로 정한다. 생성한 것에는 출처가 붙어 있어야 한다. 예외는 규칙으로 못 박지 말고 매번 확인한다.
+
+학교냐 회사냐만 다르지 순서는 같습니다. 어느 쪽이든 AI를 어디에 넣을지부터 고민하면 엉뚱한 데를 자동화하게 됩니다.
+
+아직 중간고사도 안 봤으니 성적으로 검증된 건 아닙니다. 다만 지금까지는 자료가 빠짐없이 텍스트로 남아 있고 출석도 온전합니다.
+4:T1223,
 사내에서 코드와 관련된 질문들이 자주 발생합니다.
 
 "이 기능은 어떻게 동작하나요?", "이 값은 어디서 설정되나요?" 같은 질문들에 매번 개발자가 직접 답변하는 것은 비효율적입니다.
@@ -125,6 +221,6 @@ RAG 기반 코드베이스 Q&A 봇을 통해 반복적인 코드 관련 질문�
 비개발자들도 개발자의 도움 없이 코드 동작 방식을 이해할 수 있어, 커뮤니케이션 비용이 크게 줄었습니다.
 
 물론 LLM의 한계로 인해 100% 정확한 답변을 보장할 수는 없지만, 초기 정보 탐색 단계에서 충분히 유용하게 활용되고 있습니다.
-0:["cCPwXCnccujxKSuxD1wNb",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",{"children":["__PAGE__",{},[["$L1",["$","$L2",null,{"posts":[{"slug":"rag-code-base-bot","category":"개발","title":"RAG 기반 코드베이스 Q&A 봇 만들기","description":"사내 코드 정책 질문을 자동화하는 슬랙 봇 개발기","createdAt":"2026.02.01","tags":["RAG","LLM","Python"],"content":"$3"}]}],null],null],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/3e29b3c3adab0b56.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ko","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-screen bg-background-light dark:bg-background-dark text-content-light dark:text-content-dark","children":["$","$L4",null,{"children":[["$","$L5",null,{}],["$","main",null,{"children":["$","$L6",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L7",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]}]}]],null],null],["$L8",null]]]]
-8:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Jin Blog"}],["$","meta","3",{"name":"description","content":"개발과 기술에 대한 이야기를 나누는 블로그입니다."}],["$","meta","4",{"name":"author","content":"Jin Park"}],["$","meta","5",{"name":"keywords","content":"개발,프로그래밍,Android,Kotlin,기술 블로그"}],["$","meta","6",{"name":"creator","content":"Jin Park"}],["$","meta","7",{"name":"robots","content":"index, follow"}],["$","meta","8",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","9",{"name":"google-site-verification","content":"KKfWkaTFJxAnZDpOyQWppoMWgJuDPb57poCRcJXu5vk"}],["$","meta","10",{"property":"og:title","content":"Jin Blog"}],["$","meta","11",{"property":"og:description","content":"개발과 기술에 대한 이야기를 나누는 블로그입니다."}],["$","meta","12",{"property":"og:url","content":"https://parkjin0318.github.io/"}],["$","meta","13",{"property":"og:site_name","content":"Jin Blog"}],["$","meta","14",{"property":"og:locale","content":"ko_KR"}],["$","meta","15",{"property":"og:type","content":"website"}],["$","meta","16",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","17",{"name":"twitter:title","content":"Jin Blog"}],["$","meta","18",{"name":"twitter:description","content":"개발과 기술에 대한 이야기를 나누는 블로그입니다."}],["$","link","19",{"rel":"icon","href":"/favicon.svg"}]]
+0:["0Jw4IkooSHC8s9L2fbktV",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",{"children":["__PAGE__",{},[["$L1",["$","$L2",null,{"posts":[{"slug":"university-ax","category":"일상","title":"대학 생활을 AX 하기","description":"직장 다니며 6과목을 듣기 위해, 대학 생활에서 사람이 하지 않아도 되는 일을 걷어낸 이야기","createdAt":"2026.09.16","tags":["AX","LLM","자동화"],"content":"$3"},{"slug":"rag-code-base-bot","category":"개발","title":"RAG 기반 코드베이스 Q&A 봇 만들기","description":"사내 코드 정책 질문을 자동화하는 슬랙 봇 개발기","createdAt":"2026.02.01","tags":["RAG","LLM","Python"],"content":"$4"}]}],null],null],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/3e29b3c3adab0b56.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ko","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-screen bg-background-light dark:bg-background-dark text-content-light dark:text-content-dark","children":["$","$L5",null,{"children":[["$","$L6",null,{}],["$","main",null,{"children":["$","$L7",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]}]}]],null],null],["$L9",null]]]]
+9:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Jin Blog"}],["$","meta","3",{"name":"description","content":"개발과 기술에 대한 이야기를 나누는 블로그입니다."}],["$","meta","4",{"name":"author","content":"Jin Park"}],["$","meta","5",{"name":"keywords","content":"개발,프로그래밍,Android,Kotlin,기술 블로그"}],["$","meta","6",{"name":"creator","content":"Jin Park"}],["$","meta","7",{"name":"robots","content":"index, follow"}],["$","meta","8",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","9",{"name":"google-site-verification","content":"KKfWkaTFJxAnZDpOyQWppoMWgJuDPb57poCRcJXu5vk"}],["$","meta","10",{"property":"og:title","content":"Jin Blog"}],["$","meta","11",{"property":"og:description","content":"개발과 기술에 대한 이야기를 나누는 블로그입니다."}],["$","meta","12",{"property":"og:url","content":"https://parkjin0318.github.io/"}],["$","meta","13",{"property":"og:site_name","content":"Jin Blog"}],["$","meta","14",{"property":"og:locale","content":"ko_KR"}],["$","meta","15",{"property":"og:type","content":"website"}],["$","meta","16",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","17",{"name":"twitter:title","content":"Jin Blog"}],["$","meta","18",{"name":"twitter:description","content":"개발과 기술에 대한 이야기를 나누는 블로그입니다."}],["$","link","19",{"rel":"icon","href":"/favicon.svg"}]]
 1:null

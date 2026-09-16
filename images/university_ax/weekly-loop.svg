@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 286" width="860" height="286" role="img" aria-label="대학 생활 한 주의 다섯 단계 — 받기, 만들기, 이해하기, 남기기, 꺼내기. 가운데 이해하기만 사람이 하고 나머지는 기계가 한다. 꺼내기는 복습으로 이해하기에 되돌아온다.">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8C9BB0"/></marker>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#296FCF"/></marker>
+    <style>
+      .t  { font-family: Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif; }
+      .st { font-size: 30px; font-weight: 700; fill: #22303F; }
+      .hd { font-size: 19px; font-weight: 700; fill: #8C9BB0; letter-spacing: .06em; }
+      .lg { font-size: 19px; font-weight: 600; fill: #7A8899; }
+      .cp { font-size: 20px; font-weight: 700; fill: #296FCF; }
+    </style>
+  </defs>
+
+  <rect width="860" height="286" rx="14" fill="#F4F6F8"/>
+  <text class="t hd" x="28" y="44">한 주에 하는 일</text>
+  <rect x="592" y="26" width="22" height="22" rx="6" fill="#296FCF"/>
+  <text class="t lg" x="622" y="44">사람</text>
+  <rect x="694" y="26" width="22" height="22" rx="6" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t lg" x="724" y="44">기계</text>
+
+  <g>
+    <rect x="28"  y="74" width="140" height="82" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+    <text class="t st" x="98"  y="126" text-anchor="middle">받기</text>
+    <rect x="194" y="74" width="140" height="82" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+    <text class="t st" x="264" y="126" text-anchor="middle">만들기</text>
+    <rect x="360" y="66" width="140" height="98" rx="12" fill="#296FCF"/>
+    <text class="t st" x="430" y="126" text-anchor="middle" fill="#FFFFFF">이해하기</text>
+    <rect x="526" y="74" width="140" height="82" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+    <text class="t st" x="596" y="126" text-anchor="middle">남기기</text>
+    <rect x="692" y="74" width="140" height="82" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+    <text class="t st" x="762" y="126" text-anchor="middle">꺼내기</text>
+  </g>
+
+  <g stroke="#8C9BB0" stroke-width="2.5" fill="none" marker-end="url(#a)">
+    <path d="M172,115 H190"/><path d="M338,115 H356"/><path d="M504,115 H522"/><path d="M670,115 H688"/>
+  </g>
+
+  <path d="M762,156 V206 Q762,222 746,222 H446 Q430,222 430,206 V172"
+        stroke="#296FCF" stroke-width="2.5" fill="none" stroke-dasharray="7 6" marker-end="url(#b)"/>
+  <rect x="492" y="204" width="208" height="36" rx="18" fill="#F4F6F8"/>
+  <text class="t cp" x="596" y="228" text-anchor="middle">복습이 이해로 되돌아온다</text>
+</svg>

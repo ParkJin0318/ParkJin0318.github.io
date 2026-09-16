@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 308" width="760" height="308" role="img" aria-label="같은 한 번의 전사에서, 명령이 돌려준 것은 가득 찬 성공 막대이고 파일에 실제로 담긴 것은 드문드문한 조각들이다.">
+  <defs>
+    <style>
+      .t  { font-family: Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif; }
+      .lb { font-size: 25px; font-weight: 700; fill: #3C4B5E; }
+      .in { font-size: 24px; font-weight: 700; fill: #FFFFFF; }
+      .hd { font-size: 19px; font-weight: 700; fill: #8C9BB0; letter-spacing: .06em; }
+      .no { font-size: 21px; font-weight: 600; fill: #55647A; }
+    </style>
+  </defs>
+
+  <rect width="760" height="308" rx="14" fill="#F4F6F8"/>
+  <text class="t hd" x="30" y="42">같은 한 번의 전사</text>
+
+  <text class="t lb" x="30" y="86">명령이 돌려준 것</text>
+  <rect x="30" y="100" width="700" height="46" rx="9" fill="#2E9E6B"/>
+  <text class="t in" x="380" y="131" text-anchor="middle">성공 · 종료 코드 0</text>
+
+  <text class="t lb" x="30" y="192">파일에 실제로 담긴 것</text>
+  <rect x="30" y="206" width="700" height="46" rx="9" fill="#E3E8EF"/>
+  <g fill="#296FCF">
+    <rect x="30"  y="206" width="78" height="46" rx="9"/>
+    <rect x="158" y="206" width="40" height="46" rx="9"/>
+    <rect x="330" y="206" width="56" height="46" rx="9"/>
+    <rect x="530" y="206" width="32" height="46" rx="9"/>
+    <rect x="684" y="206" width="46" height="46" rx="9"/>
+  </g>
+  <text class="t no" x="30" y="288">회색이 whisper 가 무음으로 보고 통째로 건너뛴 자리입니다.</text>
+</svg>
