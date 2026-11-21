@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 930 312" width="930" height="312" role="img" aria-label="두 방식의 비교. RAG 는 질문할 때마다 원본에서 조각을 찾아 엮어 답한다. LLM 위키는 원본을 넣을 때 한 번 위키 쪽을 수정하고, 질문할 때는 위키를 찾아 답한다.">
+  <defs>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8C9BB0"/></marker>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#296FCF"/></marker>
+    <style>
+      .t  { font-family: Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif; }
+      .hd { font-size: 19px; font-weight: 700; fill: #8C9BB0; letter-spacing: .06em; }
+      .lb { font-size: 24px; font-weight: 700; fill: #22303F; }
+      .bx { font-size: 22px; font-weight: 700; fill: #22303F; }
+      .bw { font-size: 22px; font-weight: 700; fill: #FFFFFF; }
+      .sm { font-size: 17px; font-weight: 600; fill: #7A8899; }
+      .sb { font-size: 17px; font-weight: 700; fill: #296FCF; }
+    </style>
+  </defs>
+
+  <rect width="930" height="312" rx="14" fill="#F4F6F8"/>
+  <text class="t hd" x="28" y="44">같은 원본, 엮는 시점</text>
+
+  <!-- RAG -->
+  <text class="t lb" x="28" y="117">RAG</text>
+  <rect x="190" y="74" width="100" height="70" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t bx" x="240" y="117" text-anchor="middle">원본</text>
+  <text class="t sm" x="359" y="97" text-anchor="middle">질문할 때마다</text>
+  <path d="M294,109 H422" stroke="#8C9BB0" stroke-width="2.5" fill="none" marker-end="url(#g)"/>
+  <rect x="428" y="74" width="310" height="70" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t bx" x="583" y="117" text-anchor="middle">조각 찾아 엮기</text>
+  <path d="M742,109 H784" stroke="#8C9BB0" stroke-width="2.5" fill="none" marker-end="url(#g)"/>
+  <rect x="790" y="74" width="110" height="70" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t bx" x="845" y="117" text-anchor="middle">답</text>
+  <text class="t sm" x="583" y="172" text-anchor="middle">매번 처음부터 다시 찾고 다시 엮음</text>
+
+  <!-- LLM 위키 -->
+  <text class="t lb" x="28" y="228">LLM 위키</text>
+  <text class="t sm" x="28" y="254">+ 위키 검색</text>
+  <rect x="190" y="196" width="100" height="70" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t bx" x="240" y="239" text-anchor="middle">원본</text>
+  <text class="t sb" x="359" y="219" text-anchor="middle">넣을 때 한 번</text>
+  <path d="M294,231 H422" stroke="#296FCF" stroke-width="2.5" fill="none" marker-end="url(#b)"/>
+  <rect x="428" y="196" width="140" height="70" rx="12" fill="#296FCF"/>
+  <text class="t bw" x="498" y="239" text-anchor="middle">위키 쪽 수정</text>
+  <path d="M572,231 H602" stroke="#8C9BB0" stroke-width="2.5" fill="none" marker-end="url(#g)"/>
+  <rect x="608" y="196" width="130" height="70" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t bx" x="673" y="239" text-anchor="middle">위키 찾기</text>
+  <path d="M742,231 H784" stroke="#8C9BB0" stroke-width="2.5" fill="none" marker-end="url(#g)"/>
+  <rect x="790" y="196" width="110" height="70" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t bx" x="845" y="239" text-anchor="middle">답</text>
+  <text class="t sb" x="498" y="294" text-anchor="middle">링크·어긋남이 미리 적혀 있음</text>
+</svg>

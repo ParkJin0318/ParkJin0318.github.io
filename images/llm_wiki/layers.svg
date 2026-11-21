@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 410" width="940" height="410" role="img" aria-label="세 층과 검색 색인. 원본은 텍스트로 바꿔 넣고 커밋 뒤에는 수정하지 않는다. LLM 이 원본을 읽고 HTML 위키 쪽을 쓰며, 위키의 바뀐 절만 검색 색인에 다시 들어간다. 규칙 파일은 쓸 때와 커밋 전에 위키를 검사하고, LLM 세션은 질문할 때 색인을 찾는다.">
+  <defs>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8C9BB0"/></marker>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#296FCF"/></marker>
+    <style>
+      .t  { font-family: Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif; }
+      .hd { font-size: 19px; font-weight: 700; fill: #8C9BB0; letter-spacing: .06em; }
+      .lb { font-size: 24px; font-weight: 700; fill: #22303F; }
+      .lp { font-size: 24px; font-weight: 700; fill: #296FCF; }
+      .bx { font-size: 21px; font-weight: 700; fill: #22303F; }
+      .ln { font-size: 16px; font-weight: 600; fill: #55647A; }
+      .sm { font-size: 16px; font-weight: 600; fill: #7A8899; }
+      .sb { font-size: 16px; font-weight: 700; fill: #296FCF; }
+      .mono { font-family: ui-monospace, Menlo, monospace; font-size: 16px; fill: #8C9BB0; }
+    </style>
+  </defs>
+
+  <rect width="940" height="410" rx="14" fill="#F4F6F8"/>
+  <text class="t hd" x="28" y="44">세 층과 검색 색인</text>
+
+  <!-- 원본 -->
+  <rect x="28" y="74" width="250" height="190" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t lb" x="48" y="114">원본</text>
+  <text class="mono" x="106" y="113">raw/</text>
+  <text class="t ln" x="48" y="152">PDF·슬라이드 -&gt; OCR 글</text>
+  <text class="t ln" x="48" y="180">녹음·영상 -&gt; 시각 붙은 전사</text>
+  <text class="t ln" x="48" y="208">웹 글 -&gt; 본문 HTML</text>
+  <text class="t sb" x="48" y="244">커밋 뒤에는 수정 안 함</text>
+
+  <text class="t sm" x="323" y="146" text-anchor="middle">LLM 이</text>
+  <text class="t sm" x="323" y="166" text-anchor="middle">읽고 씀</text>
+  <path d="M282,184 H362" stroke="#8C9BB0" stroke-width="2.5" fill="none" marker-end="url(#g)"/>
+
+  <!-- 위키 -->
+  <rect x="368" y="74" width="250" height="190" rx="12" fill="#EAF1FB" stroke="#296FCF" stroke-width="2"/>
+  <text class="t lp" x="388" y="114">위키</text>
+  <text class="mono" x="446" y="113">wiki/</text>
+  <text class="t ln" x="388" y="152">HTML 쪽 네 종류</text>
+  <text class="t ln" x="388" y="180">source · entity</text>
+  <text class="t ln" x="388" y="208">concept · synthesis</text>
+  <text class="t sb" x="388" y="244">LLM 이 계속 수정</text>
+
+  <text class="t sm" x="658" y="146" text-anchor="middle">바뀐 절만</text>
+  <text class="t sm" x="658" y="166" text-anchor="middle">다시 색인</text>
+  <path d="M622,184 H692" stroke="#8C9BB0" stroke-width="2.5" fill="none" marker-end="url(#g)"/>
+
+  <!-- 검색 색인 -->
+  <rect x="698" y="74" width="214" height="190" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t lb" x="718" y="114">검색 색인</text>
+  <text class="t ln" x="718" y="152">두 글자 BM25</text>
+  <text class="t ln" x="718" y="180">+ 벡터 768차원</text>
+  <text class="t ln" x="718" y="208">위키 쪽만 넣음</text>
+
+  <!-- 규칙 -->
+  <rect x="368" y="306" width="250" height="80" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2" stroke-dasharray="7 5"/>
+  <text class="t bx" x="388" y="340">규칙 파일 한 장</text>
+  <text class="t ln" x="388" y="368">태그·메타·rel·절을 값으로</text>
+  <path d="M493,302 V270" stroke="#8C9BB0" stroke-width="2.5" fill="none" stroke-dasharray="6 5" marker-end="url(#g)"/>
+  <text class="t sm" x="505" y="292">쓸 때·커밋 전 검사</text>
+
+  <!-- LLM 세션 -->
+  <rect x="698" y="306" width="214" height="80" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t bx" x="718" y="340">LLM 세션</text>
+  <text class="mono" x="718" y="368">search·get·links</text>
+  <path d="M805,302 V270" stroke="#296FCF" stroke-width="2.5" fill="none" marker-end="url(#b)"/>
+  <text class="t sb" x="817" y="292">질문할 때</text>
+</svg>
