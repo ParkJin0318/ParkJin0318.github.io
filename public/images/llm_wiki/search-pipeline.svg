@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 830" width="860" height="830" role="img" aria-label="질의 하나가 지나가는 길. BM25 와 벡터가 각각 조각 100개를 찾고, RRF 로 섞어 조각을 쪽으로 묶는다. 앞 10쪽의 조각 2개씩을 재순위 모델이 다시 매기고, 그 순서를 원래 순서와 한 번 더 섞어 쪽마다 가장 맞는 절 하나를 돌려준다. 재순위 전까지 0.02초, 모두 합쳐 평균 0.40초다.">
+  <defs>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8C9BB0"/></marker>
+    <style>
+      .t  { font-family: Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif; }
+      .hd { font-size: 19px; font-weight: 700; fill: #8C9BB0; letter-spacing: .06em; }
+      .bx { font-size: 21px; font-weight: 700; fill: #22303F; }
+      .bp { font-size: 21px; font-weight: 700; fill: #296FCF; }
+      .bw { font-size: 21px; font-weight: 700; fill: #FFFFFF; }
+      .dt { font-size: 16px; font-weight: 600; fill: #55647A; }
+      .an { font-size: 16px; font-weight: 700; fill: #7A8899; }
+      .ap { font-size: 16px; font-weight: 700; fill: #296FCF; }
+    </style>
+  </defs>
+
+  <rect width="860" height="830" rx="14" fill="#F4F6F8"/>
+  <text class="t hd" x="28" y="44">질의 하나가 지나가는 길</text>
+
+  <!-- 질의 -->
+  <rect x="310" y="68" width="240" height="56" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t bx" x="430" y="104" text-anchor="middle">질의</text>
+
+  <g stroke="#8C9BB0" stroke-width="2.5" fill="none">
+    <path d="M430,124 V140 H285 V158" marker-end="url(#g)"/>
+    <path d="M430,140 H575 V158" marker-end="url(#g)"/>
+  </g>
+
+  <!-- 두 갈래 -->
+  <rect x="150" y="164" width="270" height="88" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t bx" x="285" y="200" text-anchor="middle">BM25</text>
+  <text class="t dt" x="285" y="228" text-anchor="middle">두 글자 토큰, 조각 100개</text>
+  <rect x="440" y="164" width="270" height="88" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t bx" x="575" y="200" text-anchor="middle">벡터</text>
+  <text class="t dt" x="575" y="228" text-anchor="middle">EmbeddingGemma 2, 조각 100개</text>
+
+  <g stroke="#8C9BB0" stroke-width="2.5" fill="none">
+    <path d="M285,252 V266 H430 V282" marker-end="url(#g)"/>
+    <path d="M575,252 V266 H430"/>
+  </g>
+
+  <!-- RRF -->
+  <rect x="190" y="288" width="480" height="76" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t bx" x="430" y="320" text-anchor="middle">RRF 로 섞기</text>
+  <text class="t dt" x="430" y="346" text-anchor="middle">Σ 비중 / (60 + 순위), BM25 0.5 : 벡터 1</text>
+  <path d="M430,364 V394" stroke="#8C9BB0" stroke-width="2.5" fill="none" marker-end="url(#g)"/>
+
+  <!-- 묶기 -->
+  <rect x="190" y="400" width="480" height="76" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t bx" x="430" y="432" text-anchor="middle">조각을 쪽으로 묶기</text>
+  <text class="t dt" x="430" y="458" text-anchor="middle">쪽의 조각이 처음 나온 자리가 쪽 순위</text>
+  <text class="t an" x="688" y="444">여기까지</text>
+  <text class="t an" x="688" y="466">0.02초</text>
+  <path d="M430,476 V506" stroke="#8C9BB0" stroke-width="2.5" fill="none" marker-end="url(#g)"/>
+
+  <!-- 재순위 -->
+  <rect x="190" y="512" width="480" height="76" rx="12" fill="#EAF1FB" stroke="#296FCF" stroke-width="2"/>
+  <text class="t bp" x="430" y="544" text-anchor="middle">재순위</text>
+  <text class="t dt" x="430" y="570" text-anchor="middle">앞 10쪽 × 쪽마다 조각 2개, KURE-Reranker-nano</text>
+  <path d="M430,588 V618" stroke="#8C9BB0" stroke-width="2.5" fill="none" marker-end="url(#g)"/>
+
+  <!-- 다시 섞기 -->
+  <rect x="190" y="624" width="480" height="76" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t bx" x="430" y="656" text-anchor="middle">원래 순서와 다시 섞기</text>
+  <text class="t dt" x="430" y="682" text-anchor="middle">재순위 순서와 원래 순서를 1 : 1 RRF</text>
+  <path d="M430,700 V730" stroke="#8C9BB0" stroke-width="2.5" fill="none" marker-end="url(#g)"/>
+
+  <!-- 결과 -->
+  <rect x="190" y="736" width="480" height="64" rx="12" fill="#296FCF"/>
+  <text class="t bw" x="430" y="776" text-anchor="middle">쪽마다 가장 맞는 절 하나 + 둘레 글</text>
+  <text class="t ap" x="688" y="764">모두 합쳐</text>
+  <text class="t ap" x="688" y="786">평균 0.40초</text>
+</svg>

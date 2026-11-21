@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="900" height="500" role="img" aria-label="쪽 하나가 조각이 되는 모양. 제목 아래 첫머리, 핵심 주장 절, 구현 절이 각각 조각이 되고, h3 은 위의 h2 조각에 든다. 차례와 SVG 도표의 꼬리표는 빠지고 figcaption 은 조각에 들어간다. 벡터에는 쪽 제목과 절 제목을 앞에 붙인 글이 들어간다.">
+  <defs>
+    <style>
+      .t  { font-family: Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif; }
+      .hd { font-size: 19px; font-weight: 700; fill: #8C9BB0; letter-spacing: .06em; }
+      .h1 { font-size: 26px; font-weight: 800; fill: #22303F; }
+      .h2 { font-size: 20px; font-weight: 700; fill: #22303F; }
+      .h3 { font-size: 17px; font-weight: 700; fill: #3C4B5E; }
+      .tg { font-family: ui-monospace, Menlo, monospace; font-size: 14px; fill: #8C9BB0; }
+      .cut { font-size: 15px; font-weight: 700; fill: #C2554D; }
+      .in  { font-size: 15px; font-weight: 700; fill: #2E9E6B; }
+      .gr  { font-size: 15px; font-weight: 600; fill: #8C9BB0; }
+      .ck  { font-size: 15px; font-weight: 700; fill: #7A8899; }
+      .cn  { font-size: 20px; font-weight: 700; fill: #22303F; }
+      .cs  { font-size: 15px; font-weight: 600; fill: #55647A; }
+      .mono { font-family: ui-monospace, Menlo, monospace; font-size: 14px; fill: #55647A; }
+    </style>
+  </defs>
+
+  <rect width="900" height="500" rx="14" fill="#F4F6F8"/>
+  <text class="t hd" x="28" y="44">쪽 하나가 조각이 되는 모양</text>
+
+  <!-- 쪽 -->
+  <rect x="28" y="66" width="380" height="404" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+
+  <rect x="48" y="84" width="340" height="28" rx="6" fill="#EEF1F5"/>
+  <text class="t gr" x="62" y="103">차례</text>
+  <text class="tg" x="102" y="103">&lt;nav&gt;</text>
+  <text class="t cut" x="376" y="103" text-anchor="end">뺌</text>
+
+  <rect x="40" y="128" width="6" height="84" rx="3" fill="#296FCF"/>
+  <text class="t h1" x="60" y="156">BM25</text>
+  <text class="tg" x="138" y="155">h1</text>
+  <g fill="#E3E8EF">
+    <rect x="60" y="170" width="310" height="9" rx="4"/>
+    <rect x="60" y="186" width="310" height="9" rx="4"/>
+    <rect x="60" y="202" width="200" height="9" rx="4"/>
+  </g>
+
+  <rect x="40" y="226" width="6" height="128" rx="3" fill="#2E9E6B"/>
+  <text class="t h2" x="60" y="248">핵심 주장</text>
+  <text class="tg" x="156" y="247">h2</text>
+  <g fill="#E3E8EF">
+    <rect x="60" y="260" width="310" height="9" rx="4"/>
+    <rect x="60" y="276" width="250" height="9" rx="4"/>
+  </g>
+  <rect x="60" y="294" width="190" height="34" rx="6" fill="#F4F6F8" stroke="#D3DCE7" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text class="t gr" x="74" y="316">도표 꼬리표</text>
+  <text class="tg" x="166" y="316">&lt;svg&gt;</text>
+  <text class="t cut" x="262" y="316">뺌</text>
+  <rect x="60" y="338" width="150" height="9" rx="4" fill="#BFE3D1"/>
+  <text class="tg" x="220" y="347">figcaption</text>
+  <text class="t in" x="318" y="347">넣음</text>
+
+  <rect x="40" y="368" width="6" height="86" rx="3" fill="#E08A2E"/>
+  <text class="t h2" x="60" y="390">구현</text>
+  <text class="tg" x="110" y="389">h2</text>
+  <text class="t h3" x="76" y="418">SQLite FTS5</text>
+  <text class="tg" x="186" y="417">h3</text>
+  <g fill="#E3E8EF">
+    <rect x="76" y="430" width="294" height="9" rx="4"/>
+    <rect x="76" y="446" width="200" height="9" rx="4"/>
+  </g>
+
+  <!-- 잇는 선 -->
+  <g stroke-width="2" fill="none" stroke-dasharray="5 5">
+    <path d="M412,170 H466" stroke="#296FCF"/>
+    <path d="M412,290 H466" stroke="#2E9E6B"/>
+    <path d="M412,411 H466" stroke="#E08A2E"/>
+  </g>
+
+  <!-- 조각 -->
+  <rect x="470" y="130" width="402" height="80" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <rect x="470" y="130" width="8" height="80" rx="4" fill="#296FCF"/>
+  <text class="t ck" x="494" y="156">조각 1</text>
+  <text class="t cn" x="494" y="186">BM25</text>
+  <text class="t cs" x="560" y="186">제목 아래 첫머리</text>
+
+  <rect x="470" y="250" width="402" height="80" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <rect x="470" y="250" width="8" height="80" rx="4" fill="#2E9E6B"/>
+  <text class="t ck" x="494" y="276">조각 2</text>
+  <text class="t cn" x="494" y="306">BM25 &gt; 핵심 주장</text>
+  <text class="t cs" x="672" y="306">문단 + figcaption</text>
+
+  <rect x="470" y="371" width="402" height="80" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <rect x="470" y="371" width="8" height="80" rx="4" fill="#E08A2E"/>
+  <text class="t ck" x="494" y="397">조각 3</text>
+  <text class="t cn" x="494" y="427">BM25 &gt; 구현</text>
+  <text class="t cs" x="628" y="427">h3 까지 한 조각</text>
+
+  <text class="t ck" x="470" y="476">벡터에 넣는 글</text>
+  <text class="mono" x="580" y="476">title: BM25 &gt; 구현 | text: …</text>
+</svg>

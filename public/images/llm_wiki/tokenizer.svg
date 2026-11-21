@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" width="900" height="400" role="img" aria-label="「회의 검색」으로 「회의록을 검색했다」를 찾을 때 세 가지 자르는 법. 공백 단위는 겹치는 토큰이 없고, 세 글자씩은 두 글자 질의에서 토큰이 나오지 않으며, 두 글자씩은 회의와 검색 두 토큰이 겹친다.">
+  <defs>
+    <style>
+      .t  { font-family: Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif; }
+      .hd { font-size: 19px; font-weight: 700; fill: #8C9BB0; letter-spacing: .06em; }
+      .ch { font-size: 16px; font-weight: 700; fill: #8C9BB0; }
+      .rn { font-size: 21px; font-weight: 700; fill: #22303F; }
+      .rp { font-size: 21px; font-weight: 700; fill: #296FCF; }
+      .rs { font-family: ui-monospace, Menlo, monospace; font-size: 14px; fill: #8C9BB0; }
+      .tk { font-size: 17px; font-weight: 700; fill: #3C4B5E; }
+      .tw { font-size: 17px; font-weight: 700; fill: #FFFFFF; }
+      .no { font-size: 16px; font-weight: 600; fill: #8C9BB0; }
+      .r0 { font-size: 22px; font-weight: 800; fill: #A3AFBF; }
+      .r2 { font-size: 22px; font-weight: 800; fill: #296FCF; }
+      .ft { font-size: 16px; font-weight: 600; fill: #55647A; }
+    </style>
+  </defs>
+
+  <rect width="900" height="400" rx="14" fill="#F4F6F8"/>
+  <text class="t hd" x="28" y="44">「회의 검색」으로 「회의록을 검색했다」를 찾을 때</text>
+
+  <text class="t ch" x="48" y="88">자르는 법</text>
+  <text class="t ch" x="230" y="88">문서 토큰</text>
+  <text class="t ch" x="620" y="88">질의 토큰</text>
+  <text class="t ch" x="852" y="88" text-anchor="end">겹침</text>
+
+  <!-- 공백 단위 -->
+  <rect x="28" y="102" width="844" height="74" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t rn" x="48" y="136">공백 단위</text>
+  <text class="rs" x="48" y="160">unicode61</text>
+  <g fill="#FFFFFF" stroke="#C9D3DF" stroke-width="1.5">
+    <rect x="230" y="122" width="88" height="34" rx="8"/>
+    <rect x="324" y="122" width="88" height="34" rx="8"/>
+    <rect x="620" y="122" width="54" height="34" rx="8"/>
+    <rect x="680" y="122" width="54" height="34" rx="8"/>
+  </g>
+  <text class="t tk" x="274" y="145" text-anchor="middle">회의록을</text>
+  <text class="t tk" x="368" y="145" text-anchor="middle">검색했다</text>
+  <text class="t tk" x="647" y="145" text-anchor="middle">회의</text>
+  <text class="t tk" x="707" y="145" text-anchor="middle">검색</text>
+  <text class="t r0" x="852" y="147" text-anchor="end">0</text>
+
+  <!-- 세 글자씩 -->
+  <rect x="28" y="188" width="844" height="74" rx="12" fill="#FFFFFF" stroke="#D3DCE7" stroke-width="2"/>
+  <text class="t rn" x="48" y="222">세 글자씩</text>
+  <text class="rs" x="48" y="246">trigram</text>
+  <g fill="#FFFFFF" stroke="#C9D3DF" stroke-width="1.5">
+    <rect x="230" y="208" width="72" height="34" rx="8"/>
+    <rect x="308" y="208" width="72" height="34" rx="8"/>
+    <rect x="410" y="208" width="72" height="34" rx="8"/>
+  </g>
+  <text class="t tk" x="266" y="231" text-anchor="middle">회의록</text>
+  <text class="t tk" x="344" y="231" text-anchor="middle">의록을</text>
+  <text class="t no" x="395" y="231" text-anchor="middle">…</text>
+  <text class="t tk" x="446" y="231" text-anchor="middle">색했다</text>
+  <text class="t no" x="620" y="231">두 글자라 토큰 없음</text>
+  <text class="t r0" x="852" y="233" text-anchor="end">0</text>
+
+  <!-- 두 글자씩 -->
+  <rect x="28" y="274" width="844" height="74" rx="12" fill="#EAF1FB" stroke="#296FCF" stroke-width="2"/>
+  <text class="t rp" x="48" y="308">두 글자씩</text>
+  <text class="rs" x="48" y="332">bigram</text>
+  <g fill="#FFFFFF" stroke="#C9D3DF" stroke-width="1.5">
+    <rect x="290" y="294" width="50" height="34" rx="8"/>
+    <rect x="346" y="294" width="50" height="34" rx="8"/>
+    <rect x="474" y="294" width="50" height="34" rx="8"/>
+    <rect x="530" y="294" width="50" height="34" rx="8"/>
+  </g>
+  <g fill="#296FCF">
+    <rect x="230" y="294" width="54" height="34" rx="8"/>
+    <rect x="414" y="294" width="54" height="34" rx="8"/>
+    <rect x="620" y="294" width="54" height="34" rx="8"/>
+    <rect x="680" y="294" width="54" height="34" rx="8"/>
+  </g>
+  <text class="t tw" x="257" y="317" text-anchor="middle">회의</text>
+  <text class="t tk" x="315" y="317" text-anchor="middle">의록</text>
+  <text class="t tk" x="371" y="317" text-anchor="middle">록을</text>
+  <text class="t tw" x="441" y="317" text-anchor="middle">검색</text>
+  <text class="t tk" x="499" y="317" text-anchor="middle">색했</text>
+  <text class="t tk" x="555" y="317" text-anchor="middle">했다</text>
+  <text class="t tw" x="647" y="317" text-anchor="middle">회의</text>
+  <text class="t tw" x="707" y="317" text-anchor="middle">검색</text>
+  <text class="t r2" x="852" y="319" text-anchor="end">2</text>
+
+  <text class="t ft" x="28" y="382">조사·어미가 붙어도 「회의」「검색」이 토큰으로 남습니다. 영문과 숫자는 낱말 그대로 둡니다.</text>
+</svg>
