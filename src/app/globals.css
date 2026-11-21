@@ -132,19 +132,28 @@ body {
   color: #d4d4d4;
 }
 
+/* 링크·인용 강조색은 primary(#576283, tailwind.config.ts). 다크 배경에서는 같은 색조를 밝힌 #9AA3C2 */
 .markdown-content a {
-  color: #96c852;
+  color: #576283;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s;
 }
 
 .markdown-content a:hover {
-  border-bottom-color: #96c852;
+  border-bottom-color: #576283;
+}
+
+.dark .markdown-content a {
+  color: #9AA3C2;
+}
+
+.dark .markdown-content a:hover {
+  border-bottom-color: #9AA3C2;
 }
 
 .markdown-content blockquote {
-  border-left: 3px solid #96c852;
+  border-left: 3px solid #576283;
   padding-left: 1.25rem;
   margin: 1.5rem 0;
   color: #6B7684;
@@ -153,6 +162,7 @@ body {
 
 .dark .markdown-content blockquote {
   color: #9CA3AF;
+  border-left-color: #9AA3C2;
 }
 
 .markdown-content img {
